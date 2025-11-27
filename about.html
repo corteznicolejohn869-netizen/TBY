@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Our Story & Philosophy</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom Fonts: Inter (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #9333ea; /* Lighter Purple for contrast */
+            --secondary-color: #fcd34d; /* Lighter Gold */
+            --text-color: #f3f4f6; /* White/Off-White */
+            --light-text-color: #a1a1aa; /* Gray */
+            --background-color: #1b191b; /* Dark Gray Background */
+            --card-bg: #374151; /* Medium Dark Card */
+            --border-color: #4b5563;
+        }
+
+        /* Global styles using variables */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Logo text style */
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        /* Section dividers */
+        .divider {
+            height: 3px;
+            width: 80px;
+            background-color: var(--primary-color);
+            margin: 0 auto;
+            border-radius: 9999px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header class="shadow-md sticky top-0 z-50" style="background-color: var(--card-bg);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <span class="text-3xl font-bold logo-text">Tailored by You</span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+                    <a href="index.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">
+                        <i class="fas fa-home mr-1"></i> HOME
+                    </a>
+                    <a href="login.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">ACCOUNT</a>
+                    <a href="contact.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">CONTACT</a>
+                    <a href="about.html" class="text-sm font-bold text-purple-600 border-b-2 pb-1" style="color: var(--primary-color); border-color: var(--primary-color);">ABOUT US</a>
+                </div>
+
+                <!-- Right side icons (Theme Toggle, Mobile Menu) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" style="color: var(--text-color);">
+                        <i id="theme-icon" class="fas fa-moon text-xl"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button (Hidden on Desktop) -->
+                    <button type="button" id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" style="color: var(--text-color);">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4 px-2 space-y-2 border-t" style="border-color: var(--border-color); background-color: var(--card-bg);">
+            <a href="index.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);"><i class="fas fa-home mr-2"></i> Home</a>
+            <a href="login.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);">Account</a>
+            <a href="contact.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);">Contact</a>
+            <a href="about.html" class="block py-2 px-3 rounded-md text-base font-bold bg-purple-100 dark:bg-purple-900" style="color: var(--primary-color);">About Us</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <section class="text-center mb-12">
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-3" style="color: var(--primary-color);">
+                Our Heritage of Craftsmanship
+            </h2>
+            <p class="text-lg sm:text-xl" style="color: var(--light-text-color);">
+                Where Filipino tradition meets modern innovation to create the perfect fit.
+            </p>
+        </section>
+
+        <!-- 1. The Story Section (Updated location) -->
+        <section class="mb-16">
+            <div class="md:flex md:space-x-8 items-center">
+                <div class="md:w-1/2 mb-6 md:mb-0">
+                    <!-- Placeholder Image for narrative -->
+                    <img src="tailored.png" 
+                         alt="Image of a bespoke tailor's workshop in Lucban, Quezon, Philippines" 
+                         class="rounded-xl shadow-2xl w-full h-auto object-cover border-4" 
+                         style="border-color: var(--primary-color); opacity: 0.9;">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-3xl font-bold mb-4" style="color: var(--text-color);">
+                        The Genesis in Lucban, Quezon
+                    </h3>
+                    <p class="mb-4 text-base" style="color: var(--light-text-color);">
+                        Tailored By You was founded in 2010 by master tailors Alistair and Clara Finch, establishing their main atelier in **Lucban, Quezon**. They merged decades of classical European tailoring techniques with the rich textile heritage of the Philippines. Frustrated by the exclusive nature of traditional houses, they aimed to democratize bespoke tailoring, allowing customers worldwide to design, measure, and receive garments that fit perfectly, crafted with authentic Filipino care.
+                    </p>
+                    <p class="text-base italic" style="color: var(--light-text-color);">
+                        "We honor the local artistry of Quezon while embracing global innovation to deliver excellence." - Clara Finch.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="mb-16"><div class="divider"></div></div>
+
+        <!-- 2. Our Philosophy Section -->
+        <section class="mb-16">
+            <h3 class="text-3xl font-bold text-center mb-8" style="color: var(--text-color);">
+                Our Core Philosophy: Quality, Sustainability, and Fit
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                
+                <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                    <i class="fas fa-hand text-5xl mb-4" style="color: var(--primary-color);"></i>
+                    <h4 class="text-xl font-semibold mb-2" style="color: var(--text-color);">Exceptional Quality</h4>
+                    <p class="text-sm" style="color: var(--light-text-color);">We source fine fabrics globally and locally, specializing in natural, breathable materials often found in the best Philippine textiles.</p>
+                </div>
+
+                <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                    <i class="fas fa-leaf text-5xl mb-4" style="color: var(--primary-color);"></i>
+                    <h4 class="text-xl font-semibold mb-2" style="color: var(--text-color);">Sustainable Craftsmanship</h4>
+                    <p class="text-sm" style="color: var(--light-text-color);">Bespoke means zero waste. We only cut fabric upon order, minimizing environmental impact and supporting ethical Filipino artisan communities.</p>
+                </div>
+
+                <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                    <i class="fas fa-star text-5xl mb-4" style="color: var(--primary-color);"></i>
+                    <h4 class="text-xl font-semibold mb-2" style="color: var(--text-color);">The Perfect Fit</h4>
+                    <p class="text-sm" style="color: var(--light-text-color);">Our proprietary Analyzing measurement tools and experienced tailors guarantee a fit that is truly personalized, fused with the precision of Asian sizing standards.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="mb-16"><div class="divider"></div></div>
+
+        <!-- 3. The Team Section (Updated to 3 members) -->
+        <section class="text-center">
+            <h3 class="text-3xl font-bold mb-8" style="color: var(--text-color);">
+                Meet Our Master Tailors
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Team Member 1: Alistair Finch (Founder) -->
+                <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                    <img src="https://placehold.co/150x150/9333ea/ffffff?text=Alistair" 
+                         alt="Portrait of Alistair Finch" 
+                         class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-300 dark:border-purple-600">
+                    <h4 class="text-xl font-semibold" style="color: var(--text-color);">Alistair Finch</h4>
+                    <p class="text-sm font-medium mb-2" style="color: var(--primary-color);">Co-Founder & Master Cutter</p>
+                    <p class="text-sm" style="color: var(--light-text-color);">
+                        Specializes in traditional Savile Row cutting and fit consistency for Western garments.
+                    </p>
+                </div>
+
+                <!-- Team Member 2: Clara Finch (Co-Founder) -->
+                <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                    <img src="https://placehold.co/150x150/9333ea/ffffff?text=Clara" 
+                         alt="Portrait of Clara Finch" 
+                         class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-300 dark:border-purple-600">
+                    <h4 class="text-xl font-semibold" style="color: var(--text-color);">Clara Finch</h4>
+                    <p class="text-sm font-medium mb-2" style="color: var(--primary-color);">Co-Founder & Pattern Drafter</p>
+                    <p class="text-sm" style="color: var(--light-text-color);">
+                        Oversees all digital patterning and material selection, with expertise in Italian wools and linens.
+                    </p>
+                </div>
+
+                <!-- Team Member 3: Maria Reyes (New Filipino Specialist) -->
+                <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                    <img src="https://placehold.co/150x150/9333ea/ffffff?text=Maria" 
+                         alt="Portrait of Maria Reyes" 
+                         class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-300 dark:border-purple-600">
+                    <h4 class="text-xl font-semibold" style="color: var(--text-color);">Maria Reyes</h4>
+                    <p class="text-sm font-medium mb-2" style="color: var(--primary-color);">Cultural Liaison & Textile Specialist</p>
+                    <p class="text-sm" style="color: var(--light-text-color);">
+                        The local expert, specializing in abaca, piña, and other indigenous Philippine fabrics and traditional finishing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-8 border-t" style="border-color: var(--border-color); background-color: var(--card-bg);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-2xl font-bold logo-text mb-4">Tailored By You</p>
+            <p class="text-sm" style="color: var(--light-text-color);">&copy; 2025 Tailored By You. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Theme Toggle and Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // --- 1. Theme Toggle Logic ---
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                body.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+
+            // --- 2. Mobile Menu Logic ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

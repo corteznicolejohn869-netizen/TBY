@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Book Consultation</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Montserrat (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #bb86fc; /* Lighter Purple */
+            --secondary-color: #ffeb3b; /* Brighter Gold */
+            --text-color: #e0e0e0;
+            --light-text-color: #a0a0a0;
+            --background-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive; /* Cursive Font for Brand Name */
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Button Style */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            margin-top: 1rem;
+            border-radius: 9999px; /* full rounded */
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Form styling */
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .input-field:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+        }
+        
+        .form-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        @media (min-width: 768px) {
+            .form-container {
+                padding: 3rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header (Simple version, linking back to index.html) -->
+    <header class="sticky top-0 left-0 right-0 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700 shadow-md z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+            <a href="index.html" class="logo"> Tailored by You </a>
+            
+            <div class="flex items-center space-x-4 icons">
+                <a href="index.html" class="text-xl font-semibold hover:text-purple-600 dark:hover:text-purple-400 hidden sm:block">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+                <div id="theme-btn" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content py-12 lg:py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            
+            <header class="text-center mb-12">
+                <h1 class="text-4xl lg:text-5xl font-extrabold mb-3" style="color: var(--primary-color);">Book Your Consultation</h1>
+                <p class="text-xl" style="color: var(--light-text-color);">Start Your Bespoke Journey by scheduling an appointment with our master tailor.</p>
+                <div class="flex justify-center mt-4">
+                    <i class="fas fa-handshake text-4xl" style="color: var(--secondary-color);"></i>
+                </div>
+            </header>
+
+            <div class="form-container">
+                
+                <form id="consultationForm">
+                    <!-- Personal Details -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="name" name="name" required class="input-field" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="email" name="email" required class="input-field" placeholder="john@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="phone" class="block text-sm font-medium mb-2">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="input-field" placeholder="(+1) 555-123-4567">
+                        </div>
+                        <div class="relative">
+                            <label for="service" class="block text-sm font-medium mb-2">Desired Service <span class="text-red-500">*</span></label>
+                            <select id="service" name="service" required class="input-field appearance-none">
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="suit">Bespoke Suit</option>
+                                <option value="shirt">Custom Shirt</option>
+                                <option value="tuxedo">Dinner Tuxedo</option>
+                                <option value="accessories">Accessories</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <i class="fas fa-caret-down absolute right-3 top-1/2 transform translate-y-2 pointer-events-none" style="color: var(--light-text-color);"></i>
+                        </div>
+                    </div>
+
+                    <!-- Date and Time -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="date" class="block text-sm font-medium mb-2">Desired Date <span class="text-red-500">*</span></label>
+                            <input type="date" id="date" name="date" required class="input-field">
+                        </div>
+                        <div class="relative">
+                            <label for="time" class="block text-sm font-medium mb-2">Desired Time <span class="text-red-500">*</span></label>
+                            <select id="time" name="time" required class="input-field appearance-none">
+                                <option value="" disabled selected>Select Time</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="1:00">1:00 PM</option>
+                                <option value="2:30">2:30 PM</option>
+                                <option value="4:00">4:00 PM</option>
+                            </select>
+                            <i class="fas fa-caret-down absolute right-3 top-1/2 transform translate-y-2 pointer-events-none" style="color: var(--light-text-color);"></i>
+                        </div>
+                    </div>
+
+                    <!-- Notes/Message -->
+                    <div class="mb-8">
+                        <label for="message" class="block text-sm font-medium mb-2">Message / Special Note</label>
+                        <textarea id="message" name="message" rows="4" class="input-field" placeholder="Please include any specific details or questions you have regarding your tailoring needs."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn text-base font-semibold">
+                            Book Consultation Now
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+             <!-- Confirmation Message Modal (Custom Alert) -->
+            <div id="success-modal" class="modal fixed inset-0 flex items-center justify-center p-4" style="display: none; background-color: rgba(0, 0, 0, 0.6); z-index: 1000;">
+                <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-2xl max-w-sm w-full text-center transform transition-all" style="border: 3px solid var(--primary-color);">
+                    <i class="fas fa-check-circle text-5xl mb-4" style="color: var(--secondary-color);"></i>
+                    <h3 class="text-2xl font-bold mb-3" style="color: var(--primary-color);">Success!</h3>
+                    <p class="mb-6" style="color: var(--light-text-color);">Thank you! Your consultation has been booked. We will confirm the details via email shortly.</p>
+                    <button id="close-success-modal" class="btn text-sm px-4 py-2">OK</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer (Placeholder for consistency) -->
+    <footer class="text-center py-6 mt-12 border-t border-gray-200 dark:border-zinc-700 text-sm" style="color: var(--light-text-color); background: var(--card-bg);">
+        created by <span style="color: var(--primary-color); font-weight: 600;">TAILORED BY YOU</span> | all rights reserved 
+    </footer>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+            const form = document.getElementById('consultationForm');
+            const successModal = document.getElementById('success-modal');
+            const closeSuccessModalBtn = document.getElementById('close-success-modal');
+
+            // --- Theme Toggle Logic ---
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeBtn.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.classList.remove('dark');
+                themeBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+
+            // --- Form Submission Logic (Simulated) ---
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate form data collection
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                console.log('Simulated Consultation Booking:', data);
+
+                // Clear the form
+                form.reset();
+
+                // Show custom success modal
+                successModal.style.display = 'flex';
+            });
+
+            // Close the success modal
+            closeSuccessModalBtn.addEventListener('click', () => {
+                successModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (event) => {
+                if (event.target === successModal) {
+                    successModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Bespoke Customization</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Montserrat and Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Complex Elements -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #888886;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #bb86fc; /* Lighter Purple */
+            --secondary-color: #dcd37e; /* Brighter Gold */
+            --text-color: #e0e0e0;
+            --light-text-color: #a0a0a0;
+            --background-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Button Style */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            margin-top: 1rem;
+            border-radius: 9999px; /* full rounded */
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
+        }
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Header Navigation Styles (Desktop) */
+        .navbar ul { list-style: none; }
+        .navbar ul li {
+            position: relative;
+            float: left;
+        }
+        .navbar ul li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: color 0.3s, background-color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: var(--primary-color);
+        }
+        .navbar ul li ul {
+            position: absolute;
+            left: 0;
+            width: 15rem;
+            background: var(--card-bg);
+            border-top: 3px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 50;
+        }
+        .navbar ul li ul li {
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar ul li ul li a {
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+        }
+        .navbar ul li:hover > ul {
+            display: initial;
+        }
+
+        /* Mobile Menu Styles */
+        #menu-btn {
+            cursor: pointer;
+            z-index: 100;
+        }
+        @media (max-width: 1024px) {
+            .navbar {
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--card-bg);
+                border-top: 1px solid var(--border-color);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease-in-out;
+            }
+            .navbar.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            .navbar ul li {
+                width: 100%;
+            }
+            .navbar ul li ul {
+                position: static;
+                width: 100%;
+                border-top: none;
+                box-shadow: none;
+                padding-left: 1rem;
+                background-color: var(--background-color);
+            }
+        }
+
+        /* Home Slider Styles */
+        .home {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .home .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        .home .slide.active {
+            opacity: 1;
+        }
+        .home .content {
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            z-index: 10;
+        }
+        .home .content span {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: 300;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .home .content h3 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .home .fas {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            padding: 1rem;
+            transition: color 0.3s;
+            z-index: 20;
+        }
+        .home .fas:hover {
+            color: var(--secondary-color);
+        }
+        .home #next-slide-btn { right: 2rem; }
+        .home #prev-slide-btn { left: 2rem; }
+
+        /* Modal Specific Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; top: 0;
+            width: 100%; height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8); 
+        }
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 5% auto; 
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%; 
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .close-btn {
+            color: var(--light-text-color);
+            float: right;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .step {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--background-color);
+        }
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .config-group {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--background-color);
+        }
+        .config-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0.5rem 0 0;
+            background-color: #eee;
+            color: var(--text-color);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .config-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(106, 13, 173, 0.5);
+        }
+
+        /* Category Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .category-card {
+            min-height: 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        .card-content h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .card-content p { font-size: 1rem; font-weight: 300; }
+        
+        /* Featured Section */
+        .featured-section {
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .featured-section.active {
+            display: grid;
+        }
+        @media (min-width: 1024px) {
+            .featured-section {
+                grid-template-columns: 1fr 1.5fr;
+            }
+        }
+        .feature-image-container {
+            min-height: 400px;
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .feature-content {
+            padding: 0 2rem;
+        }
+        .feature-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .feature-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .gold-icon { color: var(--secondary-color); margin-right: 0.5rem; }
+        .feature-content ul li {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            list-style: none;
+        }
+        
+        /* Footer adjustments */
+        .footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding-top: 4rem;
+        }
+        .footer .box-container .box h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .footer .box-container .box a {
+            display: block;
+            font-size: 1rem;
+            color: var(--light-text-color);
+            padding: 0.7rem 0;
+            transition: color 0.3s;
+        }
+        .footer .box-container .box a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        .mobile-nav a {
+    color: var(--text-color);
+    transition: 0.3s ease;
+}
+.mobile-nav a:hover {
+    color: var(--primary-color);
+}
+#accDrop a:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+    </style>
+</head>
+<body class="min-h-screen">
+    
+
+    <!-- Header / Navigation Bar -->
+    <header class="sticky top-0 left-0 right-0 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700 shadow-md z-50 transition-colors duration-300 header">
+        <div class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+            <a href="lang.html" class="logo"> Tailored by You </a>
+
+            <nav class="navbar hidden lg:block">
+                <ul>
+                    <li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400">Home</a></li>
+                    <li><a href="measure.html" class="hover:text-purple-600 dark:hover:text-purple-400">Anaylize</a></li>
+                    <li><a href="shop.html" class="hover:text-purple-600 dark:hover:text-purple-400">Fabrics</a></li>
+                    <li><a href="look.html" class="hover:text-purple-600 dark:hover:text-purple-400">Lookbook</a>
+                    </li>
+                    <li><a href="contact.html" class="hover:text-purple-600 dark:hover:text-purple-400">Contact</a></li>
+                    <li><a href="login.html" class="hover:text-purple-600 dark:hover:text-purple-400">Account +</a>
+                        <ul class="absolute">
+                            <li><a href="login.html" class="text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-800">Login</a></li>
+                            <li><a href="login.html" class="text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-zinc-800">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </nav>
+            <!-- MOBILE MENU -->
+<nav id="mobileNav" class="mobile-nav lg:hidden fixed top-16 left-0 w-full bg-white dark:bg-zinc-900 border-t border-zinc-800 hidden shadow-md z-40">
+    <ul class="flex flex-col text-center">
+        <li><a href="lang.html" class="py-3 block hover:text-purple-500">Home</a></li>
+        <li><a href="measure.html" class="py-3 block hover:text-purple-500">Analyze</a></li>
+        <li><a href="shop.html" class="py-3 block hover:text-purple-500">Fabrics</a></li>
+        <li><a href="look.html" class="py-3 block hover:text-purple-500">Lookbook</a></li>
+        <li><a href="contact.html" class="py-3 block hover:text-purple-500">Contact</a></li>
+
+        <!-- Account dropdown -->
+        <li class="border-t border-zinc-800 py-3">
+            <button id="accBtn" class="w-full font-semibold flex justify-center items-center gap-2">
+                Account <i class="fas fa-chevron-down text-sm"></i>
+            </button>
+            <ul id="accDrop" class="hidden pt-2">
+                <li><a class="block py-2" href="login.html">Login</a></li>
+                <li><a class="block py-2" href="login.html">Register</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+            
+            <div class="flex items-center space-x-4 icons">
+                <div id="theme-btn" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 mode-toggle-btn transition-colors duration-300"></div>
+                
+                <a href="login.html" class="fas fa-user text-xl hover:text-purple-600 dark:hover:text-purple-400"></a>
+                <div id="menu-btn" class="fas fa-bars text-xl lg:hidden hover:text-purple-600 dark:hover:text-purple-400"></div>
+            </div>
+
+            <form action="" class="absolute top-full left-0 right-0 mx-4 lg:mx-auto bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-700 rounded-lg p-3 shadow-xl hidden transition-all duration-300 search-form" id="search-form">
+                <div class="flex items-center">
+                    <input type="search" placeholder="Search items..." id="search-box" class="w-full text-lg p-2 border-none focus:ring-0 bg-transparent text-gray-800 dark:text-gray-200">
+            </form>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Home Slider Section -->
+        <section class="home relative">
+
+            <div class="slide active" style="background-color: #967ba2;"> 
+                <div class="content">
+                    <span class="text-yellow-400">Bespoke Mastery</span>
+                    <h3 class="text-white">Crafted Uniquely for You</h3>
+                    <button id="openModalBtn" class="btn">BEGIN DESIGN</button>
+                </div>
+            </div>
+
+            <div class="slide" style="background-color: #946292;">
+                <div class="content">
+                    <span class="text-yellow-400">Knows what to fit</span>
+                    <h3 class="text-white">Analyze your Body</h3>
+                    <a href="measure.html" class="btn">ANALYZE</a>
+                </div>
+            </div>
+
+            <div class="slide" style="background-color: #88658c;">
+                <div class="content">
+                    <span class="text-yellow-400">Perfect Fit Guarantee</span>
+                    <h3 class="text-white">PERSONALIZED TAILORING</h3>
+                    <a href="book.html" class="btn">BOOK CONSULTATION</a>
+                </div>
+            </div>
+
+            <div class="slide" style="background-color: #be7dbc;">
+                <div class="content">
+                    <span class="text-yellow-400">Style that Speaks</span>
+                    <h3 class="text-white">LOOKBOOK</h3>
+                    <a href="look.html" class="btn">OUR LOOKBOOK</a>
+                </div>
+            </div>
+
+            <div class="slide" style="background-color: #be7dbc;">
+                <div class="content">
+                    <span class="text-yellow-400">Textile That Tranform</span>
+                    <h3 class="text-white">YOUR FABRIC,YOUR FASHION</h3>
+                    <a href="shop.html" class="btn">FABRICS</a>
+                </div>
+            </div>
+            
+            <div id="next-slide-btn" class="fas fa-angle-right"></div>
+            <div id="prev-slide-btn" class="fas fa-angle-left"></div>
+            
+        </section>
+        
+        <!-- Customization Modal -->
+        <div id="customizationModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 class="text-3xl font-bold text-center mb-6" style="color: var(--primary-color);">Your Bespoke Design Flow</h3>
+
+                <div class="steps-container">
+                    <div class="step">
+                        <span class="step-icon fas fa-ruler-combined"></span>
+                        <h4 class="text-xl font-semibold mt-2">Step 1: Measure</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">Submit your custom fit profile or measurements.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-icon fas fa-pen-fancy"></span>
+                        <h4 class="text-xl font-semibold mt-2">Step 2: Design</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">Select style, lapels, cuffs, and monogram placement.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-icon fas fa-gem"></span>
+                        <h4 class="text-xl font-semibold mt-2">Step 3: Fabric</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">Choose from our mill-sourced luxury materials.</p>
+                    </div>
+                </div>
+                
+                <hr style="border-top: 1px solid var(--border-color); margin: 3rem 0;">
+
+                <div class="design-configurator">
+                    <h4 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 2rem; text-align: center;">Interactive Design Console</h4>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 config-options">
+                        <div class="config-group">
+                            <h5 class="text-lg font-semibold mb-2">Suit Lapel Style:</h5>
+                            <button class="config-btn active" data-design="notch">Notch</button>
+                            <button class="config-btn" data-design="peak">Peak</button>
+                            <button class="config-btn" data-design="shawl">Shawl</button>
+                        </div>
+                        
+                        <div class="config-group">
+                            <h5 class="text-lg font-semibold mb-2">Cuff Style:</h5>
+                            <button class="config-btn active" data-design="barrel">Barrel</button>
+                            <button class="config-btn" data-design="french">French (Double)</button>
+                        </div>
+
+                        <div class="config-group">
+                            <h5 class="text-lg font-semibold mb-2">Vent Type:</h5>
+                            <button class="config-btn active" data-design="double">Double Vent</button>
+                            <button class="config-btn" data-design="single">Single Vent</button>
+                        </div>
+                    </div>
+                    
+                    <div class="visualization-placeholder mt-12 text-center rounded-xl p-8 transition-colors duration-300" style="border: 2px dashed var(--secondary-color); background: var(--background-color);">
+                        <i class="fas fa-magic" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        <p class="text-xl mt-2" style="color: var(--light-text-color);">[Interactive 3D Garment Model / Visualization Area]</p>
+                        <p class="text-sm mt-1" style="color: var(--light-text-color);">Design changes will update the view here.</p>
+                    </div>
+                </div>
+                <button class="btn" style="display: block; margin: 4rem auto 0 auto;">SAVE & PROCEED TO FABRIC</button>
+            </div>
+        </div>
+
+        <!-- Category Grid Section (Lookbook) -->
+        <section class="max-w-7xl mx-auto px-4 py-12 lg:py-20 category-grid">
+            <h2 id="category-start" class="text-4xl font-extrabold text-center mb-10" style="color: var(--primary-color);">Explore Our Collections</h2>
+
+            <div class="grid-container">
+                <div class="category-card" data-fabric-target="suits" data-category="suits" style="background-image: url('suit.png');">
+                    <div class="card-content">
+                        <h3>The Bespoke Suit</h3>
+                        <p>Precision-cut jackets and trousers.</p>
+                    </div>
+                </div>
+
+                <div class="category-card" data-fabric-target="shirts" data-category="shirts" style="background-image: url('shirts.png');">
+                    <div class="card-content">
+                        <h3>The Custom Shirt</h3>
+                        <p>Defining comfort and tailored excellence.</p>
+                    </div>
+                </div>
+
+                <div class="category-card" data-fabric-target="tuxedos" data-category="tuxedos" style="background-image: url('tuxedo.png');">
+                    <div class="card-content">
+                        <h3>The Dinner Tuxedo</h3>
+                        <p>Unmatched elegance for black tie events.</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-fabric-target="Gowns and Dress" data-category="Gowns and Dress" style="background-image: url('gown.png');">
+                    <div class="card-content">
+                        <h3>The Gowns and Dress</h3>
+                        <p>Unveil your Elegance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Fabric Sections (Dynamically displayed based on category selection) -->
+        <div class="max-w-7xl mx-auto px-4 pb-20">
+
+            <section id="suits-featured" class="featured-section active p-6">
+                <div class="feature-image-container fabric-placeholder" style="background-image: url('wool.jpg'); background-size: cover; background-position: center; border: 0.2rem solid var(--primary-color);">
+                <p class="text-center font-bold text-white text-xl mt-52 lg:mt-64">Italian Wool Swatch Preview</p>
+                 </div>
+                <div class="feature-content">
+                    <h2>Premium Italian Wool (Super 150s)</h2>
+                    <p>Experience the unparalleled drape and luxury of our Super 150s Merino Wool and Cashmere blends, sourced from Biella, Italy.</p>
+                    
+                    <div class="fabric-specs rounded-lg p-6 mb-8 transition-colors duration-300" style="background: var(--background-color); border: 1px solid var(--border-color);">
+                        <h5 class="text-xl font-semibold mb-4" style="color: var(--primary-color);">Technical Specifications</h5>
+                        <p>**Composition:** 95% Merino Wool, 5% Cashmere</p>
+                        <p>**Weight (GSM):** 280g (All-Season)</p>
+                        <p>**Thread Count:** Super 150s</p>
+                        <p>**Mill/Origin:** Vitale Barberis Canonico, Biella, Italy</p>
+                    </div>
+
+                    <ul class="space-y-2">
+                        <li><span class="fas fa-check-circle gold-icon"></span> Breathable, lightweight construction</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Luxurious soft hand-feel</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Wrinkle-resistant for travel</li>
+                    </ul>
+                    <a href="suits.html" class="btn">EXPLORE SUIT FABRICS</a>
+                </div>
+            </section>
+
+            <section id="shirts-featured" class="featured-section p-6">
+                <div class="feature-image-container fabric-placeholder" style="background-image: url('egcotton.png'); background-size: cover; background-position: center; border: 0.2rem solid var(--primary-color);">
+                    <p class="text-center font-bold text-gray-700 text-xl mt-52 lg:mt-64">Egyptian Cotton Swatch Preview</p>
+                </div>
+                <div class="feature-content">
+                    <h2>Signature Egyptian Cotton (Giza 45)</h2>
+                    <p>Our Giza 45 Egyptian Cotton offers superior strength, incredible softness, and a lustrous finish perfect for daily wear or formal events.</p>
+                    
+                    <div class="fabric-specs rounded-lg p-6 mb-8 transition-colors duration-300" style="background: var(--background-color); border: 1px solid var(--border-color);">
+                        <h5 class="text-xl font-semibold mb-4" style="color: var(--primary-color);">Technical Specifications</h5>
+                        <p>**Composition:** 100% Giza 45 Egyptian Cotton</p>
+                        <p>**Thread Count:** 140/2 ply</p>
+                        <p>**Finish:** Sateen, Silky Soft</p>
+                        <p>**Mill/Origin:** Thomas Mason, England</p>
+                    </div>
+
+                    <ul class="space-y-2">
+                        <li><span class="fas fa-check-circle gold-icon"></span> High thread count for durability</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Exceptional smoothness and lustre</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Natural breathability and comfort</li>
+                    </ul>
+                    <a href="shirt.html" class="btn">EXPLORE SHIRT FABRICS</a>
+                </div>
+            </section>
+
+            <section id="tuxedos-featured" class="featured-section p-6">
+                <div class="feature-image-container fabric-placeholder" style="background-image: url('tsilk.jpg'); background-size: cover; background-position: center; border: 0.2rem solid var(--primary-color);">
+                    <p class="text-center font-bold text-white text-xl mt-52 lg:mt-64">Dinner Silk Swatch Preview</p>
+                </div>
+                <div class="feature-content">
+                    <h2>Dinner Silk & Mohair Blend</h2>
+                    <p>For your most formal attire, our premium Silk and Mohair blends provide a distinct sheen and deep colour that is unmatched for evening wear.</p>
+                    
+                    <div class="fabric-specs rounded-lg p-6 mb-8 transition-colors duration-300" style="background: var(--background-color); border: 1px solid var(--border-color);">
+                        <h5 class="text-xl font-semibold mb-4" style="color: var(--primary-color);">Technical Specifications</h5>
+                        <p>**Composition:** 85% Mohair, 15% Silk</p>
+                        <p>**Weight (GSM):** 310g (Formal Weight)</p>
+                        <p>**Drape:** Structured and Crisp</p>
+                        <p>**Mill/Origin:** Scabal, Belgium</p>
+                    </div>
+
+                    <ul class="space-y-2">
+                        <li><span class="fas fa-check-circle gold-icon"></span> Rich, deep satin finish</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Ideal for contrast lapels and trim</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Sharp, elegant, and structured drape</li>
+                    </ul>
+                    <a href="tuxedo.html" class="btn">EXPLORE TUXEDO FABRICS</a>
+                </div>
+            </section>
+            
+            <section id="Gowns and Dress-featured" class="featured-section p-6">
+                <div class="feature-image-container fabric-placeholder" style="background-image: url('Viscose.jpg'); background-size: cover; background-position: center; border: 0.2rem solid var(--primary-color);">
+                    <p class="text-center font-bold text-white text-xl mt-52 lg:mt-64"> Viscose Swatch Preview</p>
+                </div>
+                <div class="feature-content">
+                    <h2>Evening Gown Fabric: Silk, Viscose, & Lycra Blend</h2>
+                    <p>For stunning, figure-flattering evening gowns, this premium blend combines the natural luster of silk, the fluid drape of viscose, and the essential comfort and stretch of Lycra. Perfect for bias-cut and fitted silhouettes that require movement and a beautiful sheen.</p>
+                <div class="fabric-specs rounded-lg p-6 mb-8 transition-colors duration-300" style="background: var(--background-color); border: 1px solid var(--border-color);"> 
+                     <h5 class="text-xl font-semibold mb-4" style="color: var(--primary-color);">Technical Specifications</h5> 
+                      <p>Composition: 60% Viscose, 35% Silk, 5% Lycra</p> 
+                       <p>Weight (GSM): 160g (Medium-Light Fluid Weight)</p> 
+                        <p>Drape: Fluid, Flowing, and Excellent Stretch Recovery</p> 
+                         <p>Mill/Origin: Taroni, Como, Italy</p>
+                         </div>
+
+                    <ul class="space-y-2">
+                        <li><span class="fas fa-check-circle gold-icon"></span> Available in various textures</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Compliments all suit fabrics</li>
+                        <li><span class="fas fa-check-circle gold-icon"></span> Fully customizable monograms</li>
+                    </ul>
+                    <a href="gowns.html" class="btn">GOWNS AND DRESSES FABRICS</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Section -->
+        <section class="footer">
+
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 box-container">
+                <div class="box">
+                    <h3>quick links</h3>
+                    <a href="lang.html"> <i class="fas fa-angle-right"></i> home</a>
+                    <a href="measure.html"> <i class="fas fa-angle-right"></i> analyze</a>
+                    <a href="about.html"> <i class="fas fa-angle-right"></i> about</a>
+                    <a href="tips.html"> <i class="fas fa-angle-right"></i> tips</a>
+                    <a href="contact.html"> <i class="fas fa-angle-right"></i> contact</a>
+                    <a href="login.html"> <i class="fas fa-angle-right"></i> login</a>
+                   
+                </div>
+                
+                <div class="box">
+                    <h3>our promise</h3>
+                    <a href="look.html"> <i class="fas fa-angle-right"></i> Perfect Fit Guarantee </a>
+                    <a href="term.html"> <i class="fas fa-angle-right"></i> terms of use </a>
+                    <a href="privacy.html"> <i class="fas fa-angle-right"></i> privacy policy </a>
+                </div>
+
+                <div class="box">
+                    <h3>follow us</h3>
+                    <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                    <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                    <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                    <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+                    <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+                </div>
+
+                <div class="box">
+                    <h3>newsletter</h3>
+                    <p class="text-sm mb-4" style="color: var(--light-text-color);">subscribe for latest updates</p>
+                    <form action="" class="space-y-3">
+                        <input type="email" placeholder="enter your email" class="w-full p-2 border border-gray-300 dark:border-zinc-700 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50 dark:bg-zinc-800 text-gray-800 dark:text-gray-200">
+                        <input type="submit" value="subscribe" class="btn w-full cursor-pointer">
+                    </form>
+                </div>
+            </div>
+
+            <div class="credit text-center py-6 mt-8 border-t border-gray-200 dark:border-zinc-700 text-sm" style="color: var(--light-text-color);"> created by <span style="color: var(--primary-color); font-weight: 600;">TAILORED BY YOU</span> | all rights reserved </div>
+
+        </section>
+
+    </main>
+    
+
+    <!-- Embedded JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+
+const mobileNav = document.getElementById('mobileNav');
+const accBtn = document.getElementById('accBtn');
+const accDrop = document.getElementById('accDrop');
+
+            
+            // --- DOM Elements ---
+            const body = document.body;
+            const menuBtn = document.getElementById('menu-btn');
+            const navbar = document.querySelector('.navbar');
+            const themeBtn = document.getElementById('theme-btn');
+            const slides = document.querySelectorAll('.home .slide');
+            const nextSlideBtn = document.getElementById('next-slide-btn');
+            const prevSlideBtn = document.getElementById('prev-slide-btn');
+            const openModalBtn = document.getElementById('openModalBtn');
+            const customizationModal = document.getElementById('customizationModal');
+            const closeModalBtn = customizationModal.querySelector('.close-btn');
+            const configButtons = customizationModal.querySelectorAll('.config-btn');
+            const categoryCards = document.querySelectorAll('.category-card');
+            const featuredSections = document.querySelectorAll('.featured-section')
+            let currentSlideIndex = 0;
+
+            // --- Initialization and Persistence ---
+
+            // Load theme preference
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeBtn.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.classList.remove('dark');
+                themeBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            // Show the initial active featured section
+            function showFeaturedSection(targetId) {
+                featuredSections.forEach(section => {
+                    section.classList.remove('active');
+                    section.style.display = 'none';
+                });
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.style.display = 'grid'; // Ensure it uses the grid layout
+                }
+            }
+            // Show 'suits' section by default on load
+            showFeaturedSection('suits-featured');
+
+
+            // --- Event Listeners ---
+
+            // 1. Mobile Menu Toggle
+            menuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('hidden');
+    menuBtn.classList.toggle('fa-times');
+});
+accBtn?.addEventListener('click', () => {
+    accDrop.classList.toggle('hidden');
+});
+
+
+            // 3. Theme Toggle
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+
+            // 4. Slider Functionality
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                showSlide(currentSlideIndex);
+            }
+
+            function prevSlide() {
+                currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                showSlide(currentSlideIndex);
+            }
+
+            nextSlideBtn.addEventListener('click', nextSlide);
+            prevSlideBtn.addEventListener('click', prevSlide);
+
+            // Auto-slide every 5 seconds
+            let slideInterval = setInterval(nextSlide, 50000000);
+
+            // Stop auto-slide on user interaction, restart after a delay
+            [nextSlideBtn, prevSlideBtn].forEach(btn => {
+                btn.addEventListener('mouseenter', () => clearInterval(slideInterval));
+                btn.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
+            });
+            showSlide(currentSlideIndex); // Show initial slide
+
+
+            // 5. Customization Modal Logic
+            openModalBtn.addEventListener('click', () => {
+                customizationModal.style.display = 'block';
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                customizationModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside of it
+            window.addEventListener('click', (event) => {
+                if (event.target === customizationModal) {
+                    customizationModal.style.display = 'none';
+                }
+            });
+            
+            // Modal Config Button Logic (simulate selection)
+            configButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const group = e.target.closest('.config-group');
+                    group.querySelectorAll('.config-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    // In a real app, this would update the 3D model:
+                    console.log(`Design updated: ${e.target.closest('h5').textContent.trim()} -> ${e.target.textContent.trim()}`);
+                });
+            });
+
+
+            // 6. Category Card Filtering/Display Logic
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const target = card.getAttribute('data-fabric-target');
+                    const targetId = `${target}-featured`;
+                    showFeaturedSection(targetId);
+
+                    // Smooth scroll to the featured section
+                    const sectionToScroll = document.getElementById(targetId);
+                    if (sectionToScroll) {
+                        sectionToScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    
+                });
+            });
+
+        });
+        
+        
+    </script>
+</body>
+</html>

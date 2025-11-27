@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Explore Tuxedo Fabrics</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Montserrat (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #bb86fc; /* Lighter Purple */
+            --secondary-color: #ab9c1b; /* Brighter Gold */
+            --text-color: #e0e0e0;
+            --light-text-color: #a0a0a0;
+            --background-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive; /* Cursive Font for Brand Name */
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Card Style */
+        .fabric-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .fabric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.2);
+        }
+        .image-placeholder {
+            min-height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+            text-transform: uppercase;
+        }
+        .btn-consult {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .btn-consult:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+<!-- Header -->
+<header class="sticky top-0 left-0 right-0 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700 shadow-md z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+        <a href="index.html" class="logo"> Tailored by You </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden sm:flex items-center space-x-6">
+            <a href="look.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-book-open mr-1"></i> Lookbook
+            </a>
+            <a href="shop.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-palette mr-1"></i> More Fabrics
+            </a>
+            <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-handshake mr-1"></i> Consult
+            </a>
+
+            <div id="theme-btn" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-btn" class="sm:hidden text-2xl text-purple-700 dark:text-purple-300">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex-col px-6 pb-4 space-y-4 sm:hidden bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-700">
+        <a href="look.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-book-open mr-1"></i> Lookbook
+        </a>
+        <a href="shop.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-palette mr-1"></i> More Fabrics
+        </a>
+        <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-handshake mr-1"></i> Consult
+        </a>
+
+        <div id="theme-btn-mobile" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+    </div>
+</header>
+
+    <main class="main-content py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Hero Section -->
+            <header class="text-center mb-16">
+                <h1 class="text-5xl lg:text-6xl font-extrabold mb-3" style="color: var(--primary-color);">Fabric for Your Tuxedo</h1>
+                <p class="text-xl lg:text-2xl" style="color: var(--light-text-color);">Fabric selection is the heart of bespoke tailoring. Discover our premium materials.</p>
+                <div class="flex justify-center mt-4">
+                    <i class="fas fa-ruler-combined text-5xl" style="color: var(--secondary-color);"></i>
+                </div>
+            </header>
+
+            <!-- Fabric Options Grid -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 border-b-2 pb-2" style="border-color: var(--secondary-color); color: var(--text-color);">Classic Tuxedo Fabrics</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Card 1: Merino Wool -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-gray-700 font-bold text-lg p-4" style="background-image: url(wool.jpg);">
+                            Merino Wool
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Wool (The Most Common)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** All-year formal events. Excellent drape and breathable. It is the most versatile and classic choice.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Excellent draping and wrinkle-resistance.</li>
+                                <li>Available in "Super 100s" up to "Super 180s" quality.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Mohair Blend -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-gray-600 font-bold text-lg p-4" style="background-image: url(mohair.jpg);">
+                            Mohair (For Sheen)
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Mohair (For Sheen)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Spring/Summer events. Provides a subtle sheen and is more durable. It feels lighter and crisper.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Naturally has a lustrous finish.</li>
+                                <li>More durable and crease-resistant.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Silk or Satin -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-gray-500 font-bold text-lg p-4" style="background-image: url(crepe.jpg);">
+                            Silk / Satin
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Silk or Satin (Accents)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Lapel, buttons, and trouser stripe. Silk (or satin) provides a formal and strong contrast against matte wool.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Used for the lapel facings.</li>
+                                <li>Provides elegant shine and texture.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Velvet -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-purple-900 font-bold text-lg p-4" style="background-image: url(velvet.jpg);">
+                            Luxury Velvet
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Velvet (Modern Look)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Dinner jackets and semi-formal events. Provides a deep, rich, and dramatic texture. Popular for modern weddings.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Very luxurious and soft to the touch.</li>
+                                <li>Typically used for the jacket only.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Fabric Weight and Climate Advice -->
+            <section class="mb-16 bg-white dark:bg-zinc-800 rounded-xl p-8 shadow-inner" style="border: 1px solid var(--border-color);">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--primary-color);"><i class="fas fa-cloud-sun mr-2"></i> Fabric Weight and Climate</h2>
+                <p class="text-base mb-4" style="color: var(--light-text-color);">Fabric weight is important, especially in tropical climates like the Philippines. We ensure your chosen fabric is suitable for the temperature and occasion.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Lightweight</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">**E.g., 7oz - 9oz.** For tropical climates or summer weddings. Offers good air circulation but wrinkles more easily.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Mid-weight</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">**E.g., 10oz - 12oz.** This is the most versatile option. Provides good drape and durability. Suitable for air-conditioned venues.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action / Consultation -->
+            <section class="text-center bg-white dark:bg-zinc-800 rounded-xl p-10 shadow-lg" style="border: 2px solid var(--primary-color);">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-color);">Want to Feel the Fabric?</h2>
+                <p class="text-lg mb-6" style="color: var(--light-text-color);">Visit us and view our thousands of swatches! During a personal consultation, we can help you choose the perfect fabric, color, and weight for your bespoke tuxedo.</p>
+                <a href="book.html" class="inline-block py-3 px-8 rounded-full font-semibold uppercase transition-all duration-300 btn-consult">
+                    <i class="fas fa-calendar-alt mr-2"></i> BOOK A FABRIC CONSULTATION
+                </a>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-12 border-t border-gray-200 dark:border-zinc-700 text-sm" style="color: var(--light-text-color); background: var(--card-bg);">
+        created by <span style="color: var(--primary-color); font-weight: 600;">TAILORED BY YOU</span> | all rights reserved 
+    </footer>
+
+    <!-- Embedded JavaScript for Theme Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+
+            // --- Theme Toggle Logic ---
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeBtn.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.classList.remove('dark');
+                themeBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+        });
+
+        
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const themeBtn = document.getElementById('theme-btn');
+    const themeBtnMobile = document.getElementById('theme-btn-mobile');
+
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Load Theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+        themeBtn?.classList.replace('fa-sun', 'fa-moon');
+        themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    // Toggle theme
+    const toggleTheme = () => {
+        body.classList.toggle('dark');
+
+        if (body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            themeBtn?.classList.replace('fa-sun', 'fa-moon');
+            themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeBtn?.classList.replace('fa-moon', 'fa-sun');
+            themeBtnMobile?.classList.replace('fa-moon', 'fa-sun');
+        }
+    };
+
+    themeBtn?.addEventListener('click', toggleTheme);
+    themeBtnMobile?.addEventListener('click', toggleTheme);
+
+    // Mobile Menu Toggle
+    mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileBtn.innerHTML =
+            mobileMenu.classList.contains('hidden') 
+            ? '<i class="fas fa-bars"></i>' 
+            : '<i class="fas fa-times"></i>';
+    });
+});
+</script>
+
+    
+</body>
+</html>

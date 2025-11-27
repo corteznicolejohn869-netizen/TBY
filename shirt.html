@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Explore Shirt Fabrics</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Montserrat (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #bb86fc; /* Lighter Purple */
+            --secondary-color: #d1bf1a; /* Brighter Gold */
+            --text-color: #ffffff;
+            --light-text-color: #a0a0a0;
+            --background-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive; /* Cursive Font for Brand Name */
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Card Style */
+        .fabric-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .fabric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.2);
+        }
+        .image-placeholder {
+            min-height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+            text-transform: uppercase;
+        }
+        .btn-consult {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .btn-consult:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Hero Section -->
+            <header class="text-center mb-16">
+                <h1 class="text-5xl lg:text-6xl font-extrabold mb-3" style="color: var(--primary-color);">Selecting Your Perfect Shirt Fabric</h1>
+                <p class="text-xl lg:text-2xl" style="color: var(--light-text-color);">The fabric determines the shirt's performance, feel, and silhouette. Choose wisely based on climate and occasion.</p>
+                <div class="flex justify-center mt-4">
+                    <i class="fas fa-cut text-5xl" style="color: var(--secondary-color);"></i>
+                </div>
+            </header>
+
+<!-- Header -->
+<header class="sticky top-0 left-0 right-0 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700 shadow-md z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+        <a href="index.html" class="logo"> Tailored by You </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden sm:flex items-center space-x-6">
+            <a href="look.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-book-open mr-1"></i> Lookbook
+            </a>
+            <a href="shop.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-palette mr-1"></i> More Fabrics
+            </a>
+            <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-handshake mr-1"></i> Consult
+            </a>
+
+            <div id="theme-btn" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-btn" class="sm:hidden text-2xl text-purple-700 dark:text-purple-300">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex-col px-6 pb-4 space-y-4 sm:hidden bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-700">
+        <a href="look.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-book-open mr-1"></i> Lookbook
+        </a>
+        <a href="shop.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-palette mr-1"></i> More Fabrics
+        </a>
+        <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-handshake mr-1"></i> Consult
+        </a>
+
+        <div id="theme-btn-mobile" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+    </div>
+</header>
+
+
+            <!-- Fabric Options Grid -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 border-b-2 pb-2" style="border-color: var(--secondary-color); color: var(--text-color);">Essential Shirting Weaves</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Card 1: Broadcloth / Poplin -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-blue-700 font-bold text-lg p-4" style="background-image: url(broad.jpg);">
+                            Broadcloth / Poplin
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Broadcloth (The Classic)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Characteristic:** Smooth, fine, and crisp. A simple, tight weave that creates a flat, formal finish.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>**Best For:** Formal business, black tie.</li>
+                                <li>**Feel:** Lightweight and structured.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Twill -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-gray-600 font-bold text-lg p-4" style="background-image: url(twill.jpg);">
+                            Twill
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Twill (The Soft Performer)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Characteristic:** Recognizable diagonal rib or weave pattern. It's softer, has a slight sheen, and drapes well.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>**Best For:** Everyday wear, great wrinkle resistance.</li>
+                                <li>**Feel:** Very soft, luxurious drape.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Oxford Cloth -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-green-700 font-bold text-lg p-4" style="background-image: url(oxford.jpg);">
+                            Oxford Cloth
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Oxford (The Workhorse)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Characteristic:** Distinctive basket weave, giving it a visible texture and heavier feel. Very durable.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>**Best For:** Business casual, rugged environments.</li>
+                                <li>**Feel:** Durable, slightly coarse, becomes softer with age.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Linen -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-amber-500 font-bold text-lg p-4" style="background-image: url(linen.jpg);">
+                            Linen
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Linen (The Summer Essential)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Characteristic:** Made from flax fibers. Highly breathable, light, and naturally cooler than cotton.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>**Best For:** Warm weather, beach weddings, casual elegance.</li>
+                                <li>**Feel:** Crisp at first, softens with wear; wrinkles are expected.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Thread Count and Quality Advice -->
+            <section class="mb-16 bg-white dark:bg-zinc-800 rounded-xl p-8 shadow-inner" style="border: 1px solid var(--border-color);">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--primary-color);"><i class="fas fa-hand-holding-box mr-2"></i> Understanding Thread Count and Ply</h2>
+                <p class="text-base mb-4" style="color: var(--light-text-color);">Shirting quality is often defined by the thread count ('s) and the ply of the yarn (single vs. two-ply). Knowing these numbers helps you choose the perfect balance of luxury and durability.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Thread Count ('s)</h4>
+                        <p class="text-sm mb-2" style="color: var(--light-text-color);"><span class="font-bold text-purple-500">80s:</span> Good quality, durable work shirt.</p>
+                        <p class="text-sm mb-2" style="color: var(--light-text-color);"><span class="font-bold text-purple-500">100s - 140s:</span> The sweet spot for dress shirts; soft, fine, and long-lasting.</p>
+                        <p class="text-sm" style="color: var(--light-text-color);"><span class="font-bold text-purple-500">160s+:</span> Extremely fine and luxurious, but more delicate.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Ply (Yarn Strands)</h4>
+                        <p class="text-sm mb-2" style="color: var(--light-text-color);"><span class="font-bold text-purple-500">Single-Ply:</span> A single yarn is used. Common in lower-end fabrics.</p>
+                        <p class="text-sm" style="color: var(--light-text-color);"><span class="font-bold text-purple-500">Two-Ply:</span> Two yarns are twisted together before weaving. Creates a stronger, softer, and more durable fabric. **We highly recommend 2-Ply for bespoke shirts.**</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action / Consultation -->
+            <section class="text-center bg-white dark:bg-zinc-800 rounded-xl p-10 shadow-lg" style="border: 2px solid var(--primary-color);">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-color);">Ready to Select Your Shirt Fabric?</h2>
+                <p class="text-lg mb-6" style="color: var(--light-text-color);">Touch, feel, and compare the various weaves and counts in person. Our tailoring experts will guide you to the perfect material that suits your lifestyle.</p>
+                <a href="book.html" class="inline-block py-3 px-8 rounded-full font-semibold uppercase transition-all duration-300 btn-consult">
+                    <i class="fas fa-calendar-alt mr-2"></i> BOOK A SHIRTING CONSULTATION
+                </a>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-12 border-t border-gray-200 dark:border-zinc-700 text-sm" style="color: var(--light-text-color); background: var(--card-bg);">
+        created by <span style="color: var(--primary-color); font-weight: 600;">TAILORED BY YOU</span> | all rights reserved 
+    </footer>
+
+    <!-- Embedded JavaScript for Theme Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+
+            // --- Theme Toggle Logic ---
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeBtn.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.classList.remove('dark');
+                themeBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+        });
+
+        
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const themeBtn = document.getElementById('theme-btn');
+    const themeBtnMobile = document.getElementById('theme-btn-mobile');
+
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Load Theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+        themeBtn?.classList.replace('fa-sun', 'fa-moon');
+        themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    // Toggle theme
+    const toggleTheme = () => {
+        body.classList.toggle('dark');
+
+        if (body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            themeBtn?.classList.replace('fa-sun', 'fa-moon');
+            themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeBtn?.classList.replace('fa-moon', 'fa-sun');
+            themeBtnMobile?.classList.replace('fa-moon', 'fa-sun');
+        }
+    };
+
+    themeBtn?.addEventListener('click', toggleTheme);
+    themeBtnMobile?.addEventListener('click', toggleTheme);
+
+    // Mobile Menu Toggle
+    mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileBtn.innerHTML =
+            mobileMenu.classList.contains('hidden') 
+            ? '<i class="fas fa-bars"></i>' 
+            : '<i class="fas fa-times"></i>';
+    });
+});
+
+
+    </script>
+</body>
+</html>

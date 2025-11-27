@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Bespoke Fabric Catalog</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Inter (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #1d1a1a;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #bb86fc; /* Lighter Purple */
+            --secondary-color: #dfcb12; /* Brighter Gold */
+            --text-color: #fbfbfb;
+            --light-text-color: #a0a0a0;
+            --background-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive; /* Cursive Font for Brand Name */
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Product Card Style */
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 13, 173, 0.2);
+        }
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+            transition: opacity 0.3s;
+        }
+        .product-card:hover .product-image {
+            opacity: 0.9;
+        }
+
+        .category-heading {
+            border-bottom-color: var(--secondary-color); 
+            color: var(--primary-color);
+        }
+        .mobile-nav a {
+    color: var(--text-color);
+    transition: 0.3s ease;
+}
+.mobile-nav a:hover {
+    color: var(--primary-color);
+}
+
+#accDrop a:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+#menu-btn.fa-times {
+    transform: rotate(90deg);
+    transition: .3s ease;
+}
+
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 left-0 right-0 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700 shadow-md z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+            <a href="index.html" class="logo"> Tailored by You </a>
+            
+            <nav class="flex items-center space-x-4">
+                <!-- Nav links (unchanged) -->
+
+                <a href="index.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400 hidden sm:block">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+                <a href="index.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400 hidden sm:block">
+                    <i class="fas fa-book-open mr-1"></i> Lookbook
+                </a>
+                <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400 hidden sm:block">
+                    <i class="fas fa-handshake mr-1"></i> Consult
+                </a>
+                <div id="theme-btn" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+                 <!-- MOBILE MENU ICON -->
+    <div id="menu-btn" class="fas fa-bars text-xl sm:hidden cursor-pointer hover:text-purple-600 dark:hover:text-purple-400"></div>
+</nav>
+            </nav>
+        </div>
+        <!-- MOBILE MENU -->
+<nav id="mobileNav" class="lg:hidden fixed top-16 left-0 w-full bg-white dark:bg-zinc-900 border-t border-zinc-800 hidden shadow-md z-40">
+    <ul class="flex flex-col text-center">
+        <li><a href="index.html" class="py-3 block hover:text-purple-500">Home</a></li>
+        <li><a href="look.html" class="py-3 block hover:text-purple-500">Lookbook</a></li>
+        <li><a href="book.html" class="py-3 block hover:text-purple-500">Consult</a></li>
+        <li><a href="contact.html" class="py-3 block hover:text-purple-500">Contact</a></li>
+
+        <!-- dropdown -->
+        <li class="border-t border-zinc-800 py-3">
+            <button id="accBtn" class="w-full font-semibold flex justify-center items-center gap-2">
+                Account <i class="fas fa-chevron-down text-sm"></i>
+            </button>
+            <ul id="accDrop" class="hidden pt-2">
+                <li><a class="block py-2" href="login.html">Login</a></li>
+                <li><a class="block py-2" href="login.html">Register</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+    </header>
+
+    <main class="main-content py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Hero Section (Updated for Fabrics) -->
+            <header class="text-center mb-16">
+                <h1 class="text-5xl lg:text-6xl font-extrabold mb-3" style="color: var(--primary-color);"> Fabric Catalog</h1>
+                <p class="text-xl lg:text-2xl" style="color: var(--light-text-color);">Explore the materials that will define your next bespoke garment.</p>
+                <div class="flex justify-center mt-4">
+                    <i class="fas fa-palette text-5xl" style="color: var(--secondary-color);"></i>
+                </div>
+            </header>
+
+            <!-- Fabric Grid Container (Now holds all categorized sections) -->
+            <div id="categorized-fabric-list">
+                <!-- Categorized fabric sections will be generated here by JavaScript -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-12 border-t border-gray-200 dark:border-zinc-700 text-sm" style="color: var(--light-text-color); background: var(--card-bg);">
+        created by <span style="color: var(--primary-color); font-weight: 600;">TAILORED BY YOU</span> | all rights reserved 
+    </footer>
+
+    <!-- Embedded JavaScript for Fabrics and Theme Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const menuBtn = document.getElementById('menu-btn');
+const mobileNav = document.getElementById('mobileNav');
+const accBtn = document.getElementById('accBtn');
+const accDrop = document.getElementById('accDrop');
+
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+            const categorizedListContainer = document.getElementById('categorized-fabric-list');
+
+            // --- Theme Toggle Logic ---
+            menuBtn?.addEventListener('click', () => {
+    mobileNav.classList.toggle('hidden');
+    menuBtn.classList.toggle('fa-times');
+});
+accBtn?.addEventListener('click', () => {
+    accDrop.classList.toggle('hidden');
+});
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeBtn.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.classList.remove('dark');
+                themeBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+
+            // --- Fabric Data (Expanded and Categorized) ---
+            const fabrics = [
+                // BESPOKE SUITING (Suits Category)
+                {
+                    name: "Super 150s Merino Wool",
+                    grade: "Premium Suit",
+                    description: "Luxurious, lightweight worsted wool with an exceptional drape and smooth finish, perfect for business suits.",
+                    category: "Bespoke Suiting",
+                    imageUrl: "iwool.jpg"
+                },
+                {
+                    name: "High-Twist Mohair Blend",
+                    grade: "Summer Suit",
+                    description: "Durable, wrinkle-resistant blend with a subtle sheen. Excellent for travel and warm-weather tailoring.",
+                    category: "Bespoke Suiting",
+                    imageUrl: "mohair.jpg"
+                },
+                {
+                    name: "Scottish Tweed (Herringbone)",
+                    grade: "Sport Coat/Trousers",
+                    description: "Heavy, rugged wool fabric known for its durability and complex, earthy color patterns. Ideal for casual outerwear.",
+                    category: "Bespoke Suiting",
+                    imageUrl: "harris.jpg"
+                },
+                {
+                    name: "Double-Faced Cashmere",
+                    grade: "Overcoat",
+                    description: "Ultra-soft, reversible fabric offering superior warmth and a remarkably smooth texture for luxury outerwear.",
+                    category: "Bespoke Suiting",
+                    imageUrl: "cashmere.jpg"
+                },
+                // --- NEW SUITING FABRICS ---
+                {
+                    name: "Italian Flannel",
+                    grade: "Winter Suit",
+                    description: "Heavy, soft-napped wool for exceptional warmth and a luxurious, matte finish. Ideal for cold climates and robust tailoring.",
+                    category: "Bespoke Suiting",
+                    imageUrl: "iflannel.jpeg"
+                },
+                {
+                    name: "Cotton Seersucker",
+                    grade: "Casual Summer Suit",
+                    description: "Lightweight, crinkled cotton fabric that stands away from the skin, promoting air circulation for extreme heat.",
+                    category: "Bespoke Suiting",
+                    imageUrl: "sersucker.jpeg"
+                },
+                
+                // SHIRTING MATERIALS (Shirts Category)
+                {
+                    name: "Egyptian Cotton Poplin",
+                    grade: "Dress Shirt",
+                    description: "High-thread count, crisp, and smooth finish, ideal for sharp, formal business and dress shirts.",
+                    category: "Shirting Materials",
+                    imageUrl: "poplin.jpg"
+                },
+                {
+                    name: "Sea Island Cotton Twill",
+                    grade: "Luxury Shirt",
+                    description: "The finest cotton available. Incredible softness, strength, and durability for high-end shirting.",
+                    category: "Shirting Materials",
+                    imageUrl: "sea.jpg"
+                },
+                {
+                    name: "Pinpoint Oxford Cloth",
+                    grade: "Work Shirt",
+                    description: "A durable weave, heavier than poplin, offering good structure and texture for versatile daily shirting.",
+                    category: "Shirting Materials",
+                    imageUrl: "pinpoint.jpeg"
+                },
+                {
+                    name: "Linen/Cotton Blend",
+                    grade: "Casual Shirt",
+                    description: "Breathable and lightweight blend that provides the cooling properties of linen with less wrinkle tendency.",
+                    category: "Shirting Materials",
+                    imageUrl: "linen.jpg"
+                },
+                 // --- NEW SHIRTING FABRICS ---
+                {
+                    name: "Indigo Chambray",
+                    grade: "Casual Shirt",
+                    description: "A plain weave cotton fabric known for its lightweight feel and denim-like appearance but softer drape for casual wear.",
+                    category: "Shirting Materials",
+                    imageUrl: "chambray.jpg"
+                },
+
+                // FORMAL/EVENING WEAR (Tuxedos & Gowns/Dresses Category)
+                {
+                    name: "Black Barathea Weave",
+                    grade: "Tuxedo Jacket",
+                    description: "Traditional dull luster, basket-weave wool fabric. The standard choice for classic, elegant dinner jackets.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "barathea.jpg"
+                },
+                {
+                    name: "Silk Faille (Matte Black)",
+                    grade: "Lapel Trimming",
+                    description: "Heavily ribbed silk with a matte finish. Used primarily for tuxedo lapels, piping, and trimmings.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "faille.jpg"
+                },
+                {
+                    name: "Silk Taffeta (Ruby Red)",
+                    grade: "Ball Gown",
+                    description: "Crisp, smooth fabric with a natural sheen and excellent body, used to create volume in couture gowns.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "taffeta.jpg"
+                },
+                {
+                    name: "Crepe De Chine (Silk)",
+                    grade: "Evening Dress",
+                    description: "Lightweight silk with a subtle crinkled texture, offering an excellent fluid drape for flowy evening dresses.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "crepe.jpg"
+                },
+                 // --- NEW FORMAL FABRICS ---
+                {
+                    name: "Midnight Blue Velvet",
+                    grade: "Smoking Jacket",
+                    description: "Rich, densely woven cotton or silk pile fabric with a beautiful deep color and soft hand. Perfect for evening wear jackets.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "velvet.jpg"
+                },
+                {
+                    name: "Patterned Silk Brocade",
+                    grade: "Vest/Trimming",
+                    description: "A luxurious, weighty jacquard fabric woven with complex patterns, often used for tuxedo vests or decorative panels.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "brocade.jpg"
+                },
+                {
+                    name: "Silk Duchesse Satin",
+                    grade: "Structured Gown",
+                    description: "A stiff, high-lustre satin, excellent for holding shape and providing a voluminous, structured silhouette in formal wear.",
+                    category: "Formal & Evening Wear",
+                    imageUrl: "duchess.jpg"
+                }
+            ];
+
+            // --- Fabric Grouping Logic ---
+            function groupFabrics(fabrics) {
+                return fabrics.reduce((acc, fabric) => {
+                    const category = fabric.category || 'Miscellaneous';
+                    if (!acc[category]) {
+                        acc[category] = [];
+                    }
+                    acc[category].push(fabric);
+                    return acc;
+                }, {});
+            }
+
+            // --- Fabric Rendering Logic (Updated for Categories and No Button) ---
+            function renderFabrics() {
+                categorizedListContainer.innerHTML = ''; // Clear existing content
+                const groupedFabrics = groupFabrics(fabrics);
+
+                for (const category in groupedFabrics) {
+                    const categorySection = document.createElement('section');
+                    categorySection.className = 'mb-16';
+
+                    // 1. Add Category Heading
+                    categorySection.innerHTML += `
+                        <h2 class="text-3xl font-bold mb-8 border-b-2 pb-2 category-heading">
+                            ${category}
+                        </h2>
+                    `;
+
+                    // 2. Add Product Grid for the Category
+                    const gridDiv = document.createElement('div');
+                    gridDiv.className = 'grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8';
+                    
+                    groupedFabrics[category].forEach(fabric => {
+                        const card = document.createElement('div');
+                        card.className = 'product-card';
+                        
+                        // NOTE: Removed the "View Swatches & Details" button as requested.
+                        card.innerHTML = `
+                            <img src="${fabric.imageUrl}" alt="${fabric.name}" class="product-image" onerror="this.onerror=null;this.src='https://placehold.co/400x250/9333ea/ffffff?text=Fabric+Swatch';">
+                            <div class="p-5 flex-grow flex flex-col justify-start">
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">${fabric.name}</h3>
+                                    <p class="text-xs font-medium uppercase mb-3 px-2 py-1 rounded-full inline-block" style="background-color: var(--secondary-color); color: var(--text-color);">
+                                        ${fabric.grade}
+                                    </p>
+                                    <p class="text-sm mt-4" style="color: var(--light-text-color);">${fabric.description}</p>
+                                </div>
+                            </div>
+                        `;
+                        gridDiv.appendChild(card);
+                    });
+
+                    categorySection.appendChild(gridDiv);
+                    categorizedListContainer.appendChild(categorySection);
+                }
+            }
+
+            renderFabrics();
+        });
+    </script>
+</body>
+</html>

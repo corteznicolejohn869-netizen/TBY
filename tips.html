@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Expert Tips</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom Fonts: Inter (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #9333ea; /* Lighter Purple for contrast */
+            --secondary-color: #fcd34d; /* Lighter Gold */
+            --text-color: #f3f4f6; /* White/Off-White */
+            --light-text-color: #a1a1aa; /* Gray */
+            --background-color: #160f18; /* Dark Gray Background */
+            --card-bg: #374151; /* Medium Dark Card */
+            --border-color: #4b5563;
+        }
+
+        /* Global styles using variables */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Logo text style */
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        /* Card styles */
+        .tip-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
+        }
+        .tip-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        .tip-icon-bg {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header class="shadow-md sticky top-0 z-50" style="background-color: var(--card-bg);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <span class="text-3xl font-bold logo-text">Tailored By You</span>
+                </div>
+                
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+                    <a href="index.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">
+                        <i class="fas fa-home mr-1"></i> HOME
+                    </a>
+                    <a href="tips.html" class="text-sm font-bold text-purple-600 border-b-2 pb-1" style="color: var(--primary-color); border-color: var(--primary-color);">TIPS & GUIDES</a>
+                    <a href="login.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">ACCOUNT</a>
+                </div>
+
+                <!-- Right side icons (Theme Toggle, Mobile Menu) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" style="color: var(--text-color);">
+                        <i id="theme-icon" class="fas fa-moon text-xl"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button (Hidden on Desktop) -->
+                    <button type="button" id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" style="color: var(--text-color);">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4 px-2 space-y-2 border-t" style="border-color: var(--border-color); background-color: var(--card-bg);">
+            <a href="index.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);"><i class="fas fa-home mr-2"></i> Home</a>
+            <a href="tips.html" class="block py-2 px-3 rounded-md text-base font-bold bg-purple-100 dark:bg-purple-900" style="color: var(--primary-color);">Tips & Guides</a>
+            <a href="login.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);">Account</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <section class="text-center mb-12">
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-3" style="color: var(--primary-color);">
+                The Art of Bespoke: 15 Expert Tips
+            </h2>
+            <p class="text-lg sm:text-xl" style="color: var(--light-text-color);">
+                Elevate your style and ensure the longevity of your custom pieces.
+            </p>
+        </section>
+
+        <!-- Tips List Container (Grid for desktop, stack for mobile) -->
+        <div class="grid grid-cols-1 gap-6">
+
+            <!-- Tip 1: Perfect Fit -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-ruler-combined text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">1. Prioritize Perfect Fit</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">The greatest advantage of bespoke is the fit. Do not settle for 'good enough'; work with your tailor to perfect the shoulder, chest, and sleeve lengths. Fit is paramount to style.</p>
+                </div>
+            </div>
+
+            <!-- Tip 2: Fabric Quality -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-swatchbook text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">2. Invest in Fabric Quality</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Choose high-quality natural fibers like Merino wool, Egyptian cotton, or linen. They drape better, breathe more easily, and last significantly longer than synthetic blends.</p>
+                </div>
+            </div>
+
+            <!-- Tip 3: Versatile Core -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-palette text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">3. Build a Versatile Core</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Start with classic, versatile colors—navy, charcoal grey, and black—before experimenting with bolder patterns. These core colors maximize your mixing and matching potential.</p>
+                </div>
+            </div>
+
+            <!-- Tip 4: Informed Collaborator -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-handshake text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">4. Be an Informed Collaborator</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Understand the basics of construction (full canvas vs. fused) and common style details (lapel width, vent type). This allows you to have a productive conversation with your tailor.</p>
+                </div>
+            </div>
+
+            <!-- Tip 5: Dress for the Season -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-calendar-alt text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">5. Dress for the Season</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Match fabric weight to the climate. Use breathable linen and lightweight wool/cotton blends in summer, and heavier tweed or flannel in winter for comfort and proper drape.</p>
+                </div>
+            </div>
+
+            <!-- Tip 6: Proper Hanging -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-hanger text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">6. Always Hang Your Garments Properly</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Use wide, shaped wooden hangers (cedar is ideal) for your jackets and trousers. This maintains the garment's structure, allows fabric to breathe, and discourages moths.</p>
+                </div>
+            </div>
+
+            <!-- Tip 7: Garment Rest -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-bed text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">7. Give Your Garments a Rest</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Avoid wearing a suit or blazer two days in a row. Letting wool rest for 24-48 hours allows the fibers to recover, release wrinkles, and prolong the life of the garment.</p>
+                </div>
+            </div>
+
+            <!-- Tip 8: Brush & Dry Clean -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-brush text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">8. Brush Regularly, Dry Clean Sparingly</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Use a soft garment brush after each wear to remove dust and dirt. Only dry clean when absolutely necessary, as the chemicals can degrade natural fibers over time.</p>
+                </div>
+            </div>
+
+            <!-- Tip 9: Accessory Proportion -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-tape text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">9. Master Accessory Proportion</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Ensure your tie width is proportionate to your lapel width. A skinny lapel pairs best with a slimmer tie; a classic lapel needs a standard 3.5-inch tie.</p>
+                </div>
+            </div>
+
+            <!-- Tip 10: Travel-Friendly Fabrics -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-suitcase-rolling text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">10. Choose Travel-Friendly Fabrics</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">If you travel frequently, specify a high-twist or crease-resistant wool. These fabrics naturally shed wrinkles, keeping you looking sharp straight out of the suitcase.</p>
+                </div>
+            </div>
+            
+            <!-- Tip 11: Trousers Break -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-cut text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">11. Detail the Trousers Break</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Decide on your desired "break" (the fold in the fabric above the shoe). Options range from full break (traditional) to no break (modern), affecting the overall silhouette.</p>
+                </div>
+            </div>
+            
+            <!-- Tip 12: Sun Guard -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-sun text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">12. Guard Against Sun Bleaching</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Keep your custom garments out of direct sunlight for prolonged periods, whether hanging in the closet or drying. Direct UV exposure can slowly fade the color of fine fabrics.</p>
+                </div>
+            </div>
+
+            <!-- Tip 13: Customizable Features -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-magic text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">13. Look for Customizable Features</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Don't overlook features like working cuff buttons (surgeon's cuffs), contrast stitching on buttonholes, or a special lining color. These details define true bespoke personalization.</p>
+                </div>
+            </div>
+
+            <!-- Tip 14: Document Measurements -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-clipboard-list text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">14. Document Your Measurements</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">Always keep a written or digital record of your final, perfected measurements and specifications. This makes future reorders or adjustments significantly easier and faster.</p>
+                </div>
+            </div>
+
+            <!-- Tip 15: Address Stains -->
+            <div class="tip-item rounded-xl p-6 shadow-lg flex flex-col md:flex-row items-start">
+                <div class="p-3 rounded-full mr-4 mb-4 md:mb-0 tip-icon-bg"><i class="fas fa-eraser text-xl text-white"></i></div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: var(--text-color);">15. Address Stains Immediately</h3>
+                    <p class="text-sm sm:text-base" style="color: var(--light-text-color);">For spills, gently blot the area—do not rub—and take the garment to a professional cleaner as soon as possible. The longer a stain sits, the harder it is to remove.</p>
+                </div>
+            </div>
+
+        </div>
+
+       
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-8 border-t" style="border-color: var(--border-color); background-color: var(--card-bg);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-2xl font-bold logo-text mb-4">Tailored By You</p>
+            <p class="text-sm" style="color: var(--light-text-color);">&copy; 2025 Tailored By You. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Theme Toggle and Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // 1. Theme Toggle Logic
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                body.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+
+            // 2. Mobile Menu Logic
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

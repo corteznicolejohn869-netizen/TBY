@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Measurement Calculator (Analysis Only)</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Montserrat (Content - matching index.html) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) - MATCHING index.html */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #888886; /* Muted gray text, matching index.html */
+            --light-text-color: #666;
+            --background-color: #be76bd;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+
+        /* Dark Theme variables */
+        .dark {
+            --text-color: #e5e7eb; /* Light Gray */
+            --light-text-color: #9ca3af; /* Medium Gray */
+            --background-color: #000000; /* Dark Gray */
+            --card-bg: #323a46; /* Medium Dark Gray */
+            --border-color: #4b5563; /* Gray Border */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif; /* Updated Font */
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Cursive style for the logo */
+        .logo-cursive {
+            font-family: 'Great Vibes', cursive;
+            color: var(--primary-color);
+            line-height: 1; 
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            background-color: #7d2ae8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.4);
+        }
+
+        .dark .primary-btn {
+            background-color: var(--primary-color);
+        }
+
+        .dark .primary-btn:hover {
+            background-color: #7d2ae8;
+        }
+
+        .measurement-input {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        .measurement-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+        }
+
+        .tab-btn.active {
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white dark:bg-gray-700 shadow-lg transition-colors duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+            <a href="index.html" class="text-4xl font-bold logo-cursive"> Tailored by You </a>
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-300" aria-label="Toggle dark mode">
+                    <i id="theme-icon" class="fas fa-sun text-xl"></i>
+                </button>
+                
+                <a href="index.html" class="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition duration-200">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content: Measurement Tool -->
+    <main class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-2 transition-colors duration-300">Perfect Fit Measurement Analyzer</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400 transition-colors duration-300">Input your body measurements to get an instant analysis of your body type and a suggested fit.</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 md:p-10 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700 transition-colors duration-300">
+            
+            <!-- Unit Selection -->
+            <div class="flex justify-end mb-6">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button id="unit-cm" class="unit-toggle px-4 py-2 text-sm font-medium rounded-l-lg primary-btn text-white transition-colors">
+                        CM
+                    </button>
+                    <button id="unit-in" class="unit-toggle px-4 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-r-lg hover:bg-gray-300 transition-colors dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500">
+                        IN
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gender Tabs -->
+            <div class="flex mb-8 border-b border-gray-200 dark:border-gray-600">
+                <button data-gender="man" class="tab-btn px-6 py-3 mr-4 text-gray-600 dark:text-gray-400 transition-colors active">
+                    <i class="fas fa-male mr-2"></i> Men's Measurements
+                </button>
+                <button data-gender="woman" class="tab-btn px-6 py-3 text-gray-600 dark:text-gray-400 transition-colors">
+                    <i class="fas fa-female mr-2"></i> Women's Measurements
+                </button>
+            </div>
+
+            <!-- Status Message Area (Kept, but only used for validation/errors) -->
+            <div id="status-message" class="hidden p-3 mb-6 rounded-lg text-center font-medium" role="alert"></div>
+
+            <!-- Recommendation Display Area -->
+            <div id="recommendation-result" class="hidden bg-purple-50 dark:bg-purple-900 border-l-4 border-purple-500 text-purple-800 dark:text-purple-200 p-4 mb-8 rounded-lg shadow-md transition-colors duration-300">
+                <p class="font-bold text-lg mb-1"><i class="fas fa-star mr-2"></i> Analysis Results:</p>
+                <p id="body-type-text" class="text-xl mb-2"><span class="font-semibold text-purple-900 dark:text-purple-100">Body Type:</span> </p>
+                <p id="recommendation-text" class="text-xl"><span class="font-semibold text-purple-900 dark:text-purple-100">Suggested Fit:</span> </p>
+                <p class="text-sm mt-2 text-purple-600 dark:text-purple-300">This analysis is based on your body proportions. You can still customize the style.</p>
+            </div>
+
+            <!-- Man's Form Content -->
+            <form id="man-form" class="measurement-form space-y-6">
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 border-b pb-3 mb-6 border-gray-200 dark:border-gray-700">Upper Body and Jacket Measurements</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="field-group">
+                        <label for="man-neck" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Neck Circumference (A)</label>
+                        <input type="number" step="0.1" id="man-neck" name="neck" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 40" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure around the base of the neck. </p>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label for="man-chest" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Chest Circumference (B)</label>
+                        <input type="number" step="0.1" id="man-chest" name="chest" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 100" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure the fullest part of the chest, under the arms. [Image of man measuring chest circumference]</p>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label for="man-sleeve" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Sleeve Length (C)</label>
+                        <input type="number" step="0.1" id="man-sleeve" name="sleeve" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 65" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">From shoulder point down to the wrist. [Image of man measuring sleeve length]</p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="man-waist" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Natural Waist (D)</label>
+                        <input type="number" step="0.1" id="man-waist" name="waist" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 85" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure the narrowest part of the torso (typically near the navel). </p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="man-hips" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hips/Seat (E)</label>
+                        <input type="number" step="0.1" id="man-hips" name="hips" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 100" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure the fullest part of the hip/seat area. </p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="man-inseam" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Inseam (F)</label>
+                        <input type="number" step="0.1" id="man-inseam" name="inseam" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 78" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">From the crotch seam down to the ankle. [Image of man measuring inseam]</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <button type="submit" class="primary-btn w-full text-white px-6 py-3 rounded-lg font-bold text-lg shadow-md hover:shadow-xl transition duration-300">
+                        <i class="fas fa-chart-line mr-2"></i> Analyze Body Measurements
+                    </button>
+                </div>
+            </form>
+
+            <!-- Woman's Form Content (Hidden by default) -->
+            <form id="woman-form" class="measurement-form space-y-6 hidden">
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 border-b pb-3 mb-6 border-gray-200 dark:border-gray-700">Dress and Blouse Measurements</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="field-group">
+                        <label for="woman-bust" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Bust Circumference (A)</label>
+                        <input type="number" step="0.1" id="woman-bust" name="bust" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 90" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure the fullest part of the bust. [Image of woman measuring bust circumference]</p>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label for="woman-underbust" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Underbust (B)</label>
+                        <input type="number" step="0.1" id="woman-underbust" name="underbust" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 75" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure directly under the bust line. </p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="woman-waist" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Natural Waist (C)</label>
+                        <input type="number" step="0.1" id="woman-waist" name="waist" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 70" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure the narrowest part of the torso. </p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="woman-hips" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hips/Seat (D)</label>
+                        <input type="number" step="0.1" id="woman-hips" name="hips" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 95" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Measure the fullest part of the hip/seat area. [Image of woman measuring hips circumference]</p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="woman-back-length" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Back Length (E)</label>
+                        <input type="number" step="0.1" id="woman-back-length" name="backLength" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 40" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">From the base of the neck to the waistline. [Image of woman measuring back length]</p>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="woman-shoulder" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Shoulder Width (F)</label>
+                        <input type="number" step="0.1" id="woman-shoulder" name="shoulder" class="measurement-input w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600" placeholder="e.g. 40" required>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Across the back, from shoulder point to shoulder point. [Image of woman measuring shoulder width]</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <button type="submit" class="primary-btn w-full text-white px-6 py-3 rounded-lg font-bold text-lg shadow-md hover:shadow-xl transition duration-300">
+                        <i class="fas fa-chart-line mr-2"></i> Analyze Body Measurements
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+    
+    <!-- Calculator Script (No Firebase/Auth/Save) -->
+    <script type="module">
+        // --- Theme Toggle Setup ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+        
+        // Function to set the theme
+        function setTheme(isDark) {
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize theme based on preference or system default
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else {
+            setTheme(prefersDark);
+        }
+
+        // Add event listener to the toggle button
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlElement.classList.contains('dark');
+            setTheme(!isDark);
+        });
+        
+        // --- Global Variables and Constants ---
+        let currentUnit = 'cm'; // Default unit is CM
+        const CM_TO_IN = 0.393701;
+        const IN_TO_CM = 2.54;
+        
+        const manForm = document.getElementById('man-form');
+        const womanForm = document.getElementById('woman-form');
+        const unitCMBtn = document.getElementById('unit-cm');
+        const unitINBtn = document.getElementById('unit-in');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const statusMessage = document.getElementById('status-message');
+        const recommendationResult = document.getElementById('recommendation-result');
+        const recommendationText = document.getElementById('recommendation-text');
+        const bodyTypeText = document.getElementById('body-type-text');
+        const measurementInputs = document.querySelectorAll('.measurement-input');
+
+        // --- Core Logic: Body Type and Fit Recommendation ---
+
+        /**
+         * Converts a value to CM if needed.
+         * @param {number} value Measurement value.
+         * @param {string} unit Unit of the value ('cm' or 'in').
+         * @returns {number} Value in Centimeters (CM).
+         */
+        const convertToCM = (value, unit) => unit === 'in' ? value * IN_TO_CM : value;
+
+
+        /**
+         * Determines body type based on relative proportions (Bust/Chest, Waist, Hips).
+         * Uses measurements converted to CM for consistent logic.
+         * @param {string} gender 'man' or 'woman'
+         * @param {object} measurements Contains measurement values (currently in the unit specified by currentUnit).
+         * @returns {string} The suggested body type and a description.
+         */
+        function getBodyType(gender, measurements) {
+            const tempUnit = currentUnit; // Use current UI unit for conversion
+            
+            if (gender === 'man') {
+                const chestCM = convertToCM(measurements.chest, tempUnit);
+                const waistCM = convertToCM(measurements.waist, tempUnit);
+                const hipsCM = convertToCM(measurements.hips, tempUnit);
+                
+                // Men's Body Types focus on the chest/shoulder to waist ratio (Chest Drop or 'V' shape)
+                // Ratio: Chest / Waist
+                const ratioCW = chestCM / waistCM;
+                
+                let bodyType = "Rectangle (Balanced)"; // Default
+                let description = "Shoulders, chest, and hips are roughly equal. Focus on adding definition.";
+
+                if (ratioCW > 1.05 && chestCM > hipsCM) {
+                    // Ratio > 1.05 is generally considered athletic/inverted triangle
+                    bodyType = "Inverted Triangle (Athletic)"; 
+                    description = "Wider chest/shoulders compared to the waist and hips. Ideal for structured wear.";
+                } else if (waistCM > chestCM && waistCM > hipsCM) {
+                    // Waist is the largest circumference
+                    bodyType = "Oval/Round";
+                    description = "Wider mid-section (waist) than chest and hips. Aim for vertical lines and tailored fits.";
+                } else if (hipsCM > chestCM) {
+                    // Hips larger than chest
+                    bodyType = "Triangle (Pear)";
+                    description = "Hips are wider than the chest/shoulders. Focus on enhancing the shoulders and chest.";
+                }
+                
+                return { 
+                    type: bodyType, 
+                    description: description 
+                };
+
+            } else if (gender === 'woman') {
+                const bustCM = convertToCM(measurements.bust, tempUnit);
+                const waistCM = convertToCM(measurements.waist, tempUnit);
+                const hipsCM = convertToCM(measurements.hips, tempUnit);
+                
+                // Women's Body Types focus on the relative sizes of Bust/Shoulders, Waist, and Hips
+                
+                // Helper to check if two measurements are 'close' (e.g., within 5% or 5cm)
+                const isClose = (a, b) => Math.abs(a - b) < 5; 
+
+                // Hourglass: Hips and Bust are roughly equal, Waist is significantly smaller.
+                if (isClose(bustCM, hipsCM) && waistCM < (bustCM * 0.9)) { 
+                    bodyType = "Hourglass";
+                    description = "Bust and hips are balanced, with a defined, narrow waist. Versatile fitting.";
+                } 
+                // Rectangle: Hips, Waist, and Bust are all roughly equal.
+                else if (isClose(bustCM, hipsCM) && isClose(bustCM, waistCM)) {
+                    bodyType = "Rectangle (H-Shape)";
+                    description = "Measurements are similar across the bust, waist, and hips. Needs definition at the waist.";
+                } 
+                // Triangle (Pear): Hips are significantly wider than Bust.
+                else if (hipsCM > (bustCM * 1.05)) {
+                    bodyType = "Triangle (Pear)";
+                    description = "Hips are the widest point. Focus on balancing the upper body with structured tops.";
+                } 
+                // Inverted Triangle: Bust/Shoulders are significantly wider than Hips.
+                else if (bustCM > (hipsCM * 1.05)) {
+                    bodyType = "Inverted Triangle (V-Shape)";
+                    description = "Bust or shoulders are the widest points. Focus on softer tops and structured bottoms.";
+                }
+                // Oval/Apple: Waist is the widest point.
+                else if (waistCM > bustCM && waistCM > hipsCM) {
+                    bodyType = "Oval (Apple)";
+                    description = "The waist is wider than the bust and hips. Focus on defining the shoulders and elongating the torso.";
+                }
+                
+                return { 
+                    type: bodyType, 
+                    description: description 
+                };
+            }
+            
+            return { type: "Unknown", description: "Insufficient data for detailed analysis." };
+        }
+        
+        /**
+         * Provides a fitting recommendation based on key proportional measurements (converted to CM internally).
+         * @param {string} gender 'man' or 'woman'
+         * @param {object} measurements Contains measurement values (in the current unit).
+         * @returns {string} The suggested fit type.
+         */
+        function getFitRecommendation(gender, measurements) {
+            const chestCM = convertToCM(measurements.chest || measurements.bust, currentUnit);
+            const waistCM = convertToCM(measurements.waist, currentUnit);
+
+            if (gender === 'man') {
+                const difference = chestCM - waistCM; // Chest Drop
+
+                let recommendation = "Regular Fit (Standard comfort)"; 
+
+                if (difference > 15) {
+                    recommendation = "Slim/Athletic Fit (For a more sculpted, V-tapered look)";
+                } else if (difference >= 10) {
+                    recommendation = "Tailored/Modern Fit (Balanced width and comfort)";
+                } else {
+                    recommendation = "Comfort/Classic Fit (For a more relaxed feel)";
+                }
+                return `${recommendation} (Chest Drop: ${difference.toFixed(1)} cm)`;
+
+            } else if (gender === 'woman') {
+                const hipsCM = convertToCM(measurements.hips, currentUnit);
+                const wHr = waistCM / hipsCM; // Waist-to-Hip Ratio (WHR)
+
+                let recommendation = "Classic Fit (General purpose shaping)"; 
+
+                if (wHr < 0.75) { // Highly defined waist (Hourglass)
+                    recommendation = "Curvy/Hourglass Fit (Best for a highly defined waistline)";
+                } else if (wHr < 0.8) { // Defined waist
+                    recommendation = "Tailored/Figure-Hugging Fit (Emphasizes natural shape)";
+                } else { // Straighter or undefined waist
+                    recommendation = "Straight/Relaxed Fit (For a looser, elongated silhouette)";
+                }
+                return `${recommendation} (WHR: ${wHr.toFixed(2)})`;
+            }
+            
+            return "Unable to provide fitting recommendation.";
+        }
+
+        /** Displays the analysis results in the dedicated UI section */
+        function displayAnalysis(bodyAnalysis, fitRecommendation) {
+            bodyTypeText.innerHTML = `<span class="font-semibold text-purple-900 dark:text-purple-100">Body Type:</span> ${bodyAnalysis.type} (${bodyAnalysis.description})`;
+            recommendationText.innerHTML = `<span class="font-semibold text-purple-900 dark:text-purple-100">Suggested Fit:</span> ${fitRecommendation}`;
+            recommendationResult.classList.remove('hidden');
+            // Scroll to the result area
+            recommendationResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+
+        // --- UI Functions ---
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800', 'bg-yellow-100', 'text-yellow-800', 'dark:bg-green-900', 'dark:text-green-200', 'dark:bg-red-900', 'dark:text-red-200', 'dark:bg-yellow-900', 'dark:text-yellow-200');
+            
+            if (type === 'success') {
+                statusMessage.classList.add('bg-green-100', 'text-green-800', 'dark:bg-green-900', 'dark:text-green-200');
+            } else if (type === 'error') {
+                statusMessage.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-900', 'dark:text-red-200');
+            } else if (type === 'loading') {
+                statusMessage.classList.add('bg-yellow-100', 'text-yellow-800', 'dark:bg-yellow-900', 'dark:text-yellow-200');
+            }
+            
+            // Note: Keeping status message temporary for validation errors
+            setTimeout(() => {
+                statusMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        function switchGenderTab(gender) {
+            tabButtons.forEach(btn => {
+                if (btn.dataset.gender === gender) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            if (gender === 'man') {
+                manForm.classList.remove('hidden');
+                womanForm.classList.add('hidden');
+            } else {
+                womanForm.classList.remove('hidden');
+                manForm.classList.add('hidden');
+            }
+            recommendationResult.classList.add('hidden'); // Hide analysis when switching tabs
+        }
+
+        function updateUnits(newUnit) {
+            if (newUnit === currentUnit) return;
+            
+            const conversionFactor = (newUnit === 'in') ? CM_TO_IN : IN_TO_CM;
+
+            measurementInputs.forEach(input => {
+                let value = parseFloat(input.value);
+                if (!isNaN(value) && value > 0) {
+                    input.value = (value * conversionFactor).toFixed(1);
+                }
+            });
+
+            currentUnit = newUnit;
+            // Update button styles
+            [unitCMBtn, unitINBtn].forEach(btn => {
+                const isTarget = btn.id.includes(newUnit);
+                btn.classList.toggle('primary-btn', isTarget);
+                btn.classList.toggle('bg-gray-200', !isTarget);
+                btn.classList.toggle('text-white', isTarget);
+                btn.classList.toggle('text-gray-700', !isTarget);
+                btn.classList.toggle('dark:bg-gray-600', !isTarget);
+                btn.classList.toggle('dark:text-gray-200', !isTarget);
+            });
+        }
+
+        // --- Analysis Function (Replaces saveMeasurements) ---
+        async function analyzeMeasurements(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const gender = form.id.includes('man') ? 'man' : 'woman';
+            const formData = new FormData(form);
+            const measurements = {};
+
+            // Collect and validate data
+            let allValid = true;
+            for (const [key, value] of formData.entries()) {
+                const numValue = parseFloat(value);
+                if (isNaN(numValue) || numValue <= 0) {
+                    allValid = false;
+                    break;
+                }
+                measurements[key] = numValue;
+            }
+
+            if (!allValid) {
+                showStatus(`Please enter a valid positive value for all required fields.`, 'error');
+                recommendationResult.classList.add('hidden');
+                return;
+            }
+
+            // --- Run Body Analysis and Fit Recommendation Logic ---
+            showStatus(`Analyzing ${gender}'s measurements...`, 'loading');
+            
+            // Simulating a brief delay for a better user experience (no actual async work)
+            setTimeout(() => {
+                const bodyTypeAnalysis = getBodyType(gender, measurements);
+                const fitRecommendation = getFitRecommendation(gender, measurements);
+                displayAnalysis(bodyTypeAnalysis, fitRecommendation);
+                showStatus(`Analysis complete!`, 'success');
+            }, 300);
+        }
+
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tab switching
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const gender = btn.dataset.gender;
+                    switchGenderTab(gender);
+                });
+            });
+
+            // Unit switching
+            unitCMBtn.addEventListener('click', () => updateUnits('cm'));
+            unitINBtn.addEventListener('click', () => updateUnits('in'));
+
+            // Form submission (now runs analysis, not save)
+            manForm.addEventListener('submit', analyzeMeasurements);
+            womanForm.addEventListener('submit', analyzeMeasurements);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Explore Suit Fabrics</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom Fonts: Montserrat (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #bb86fc; /* Lighter Purple */
+            --secondary-color: #a19312; /* Brighter Gold */
+            --text-color: #e2e2e2;
+            --light-text-color: #a0a0a0;
+            --background-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive; /* Cursive Font for Brand Name */
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+        
+        /* Custom Card Style */
+        .fabric-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .fabric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.2);
+        }
+        .image-placeholder {
+            min-height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0,0,0,0.7);
+            text-transform: uppercase;
+        }
+        .btn-consult {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .btn-consult:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+<header class="sticky top-0 left-0 right-0 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700 shadow-md z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4 lg:p-6">
+        <a href="index.html" class="logo"> Tailored by You </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden sm:flex items-center space-x-6">
+            <a href="look.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-book-open mr-1"></i> Lookbook
+            </a>
+            <a href="shop.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-palette mr-1"></i> More Fabrics
+            </a>
+            <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+                <i class="fas fa-handshake mr-1"></i> Consult
+            </a>
+
+            <div id="theme-btn" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-btn" class="sm:hidden text-2xl text-purple-700 dark:text-purple-300">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex-col px-6 pb-4 space-y-4 sm:hidden bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-700">
+        <a href="look.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-book-open mr-1"></i> Lookbook
+        </a>
+        <a href="shop.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-palette mr-1"></i> More Fabrics
+        </a>
+        <a href="book.html" class="text-lg font-semibold hover:text-purple-600 dark:hover:text-purple-400">
+            <i class="fas fa-handshake mr-1"></i> Consult
+        </a>
+
+        <div id="theme-btn-mobile" class="fas fa-sun text-xl cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"></div>
+    </div>
+</header>
+
+
+    <main class="main-content py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Hero Section -->
+            <header class="text-center mb-16">
+                <h1 class="text-5xl lg:text-6xl font-extrabold mb-3" style="color: var(--primary-color);">Selecting Your Perfect Suit Fabric</h1>
+                <p class="text-xl lg:text-2xl" style="color: var(--light-text-color);">The fabric determines the suit's performance, feel, and silhouette. Choose wisely based on climate and occasion.</p>
+                <div class="flex justify-center mt-4">
+                    <i class="fas fa-cut text-5xl" style="color: var(--secondary-color);"></i>
+                </div>
+            </header>
+
+            <!-- Fabric Options Grid -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 border-b-2 pb-2" style="border-color: var(--secondary-color); color: var(--text-color);">Key Suit Materials</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Card 1: Worsted Wool (Year-Round) -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-gray-700 font-bold text-lg p-4" style="background-image: url('worsted.jpg');">
+                            Worsted Wool
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Worsted Wool (The Standard)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Business suits, year-round use. It is made from long, tightly spun fibers creating a smooth, durable finish.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>The most common and versatile choice.</li>
+                                <li>High wrinkle resistance and great drape.</li>
+                                <li>Excellent for structured tailoring.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Flannel & Tweed (Winter/Heavy) -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-gray-600 font-bold text-lg p-4" style="background-image: url('tweed.jpg');">
+                            Flannel / Tweed
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Flannel & Tweed (Textured)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Cooler months, academic or casual styling. Flannel is brushed for a soft, fuzzy texture. Tweed is rougher and known for distinct patterns.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Provides superior warmth and structure.</li>
+                                <li>Heavier weight (often 12oz+).</li>
+                                <li>Best for a relaxed, less formal look.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Linen & Cotton (Summer/Light) -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-amber-500 font-bold text-lg p-4" style="background-image: url('linen.jpg');">
+                            Linen & Cotton
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Linen & Cotton (Breathable)</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Hot, humid climates or outdoor events. Both are light and highly breathable, offering comfort in heat.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Highest breathability, keeps you cool.</li>
+                                <li>Prone to wrinkling, which is part of the charm (especially linen).</li>
+                                <li>Suitable for casual or destination weddings.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Mohair / Silk Blend (Luxury Finish) -->
+                    <div class="fabric-card">
+                        <div class="image-placeholder bg-purple-900 font-bold text-lg p-4" style="background-image: url('mohair.jpg');">
+                            Luxury Blends
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--primary-color);">Mohair / Silk Blends</h3>
+                            <p class="text-sm" style="color: var(--light-text-color);">**Ideal:** Adding a subtle shimmer. Mohair (from the Angora goat) adds luster and crispness. Silk blends enhance softness and shine.</p>
+                            <ul class="list-disc list-inside mt-3 text-xs space-y-1" style="color: var(--light-text-color);">
+                                <li>Adds a distinct, luxurious sheen.</li>
+                                <li>Mohair is excellent at shedding wrinkles.</li>
+                                <li>Often reserved for high-end garments.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Super Number Explanation -->
+            <section class="mb-16 bg-white dark:bg-zinc-800 rounded-xl p-8 shadow-inner" style="border: 1px solid var(--border-color);">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--primary-color);"><i class="fas fa-sort-numeric-up-alt mr-2"></i> Understanding Super Numbers (S100s, S150s, etc.)</h2>
+                <p class="text-base mb-4" style="color: var(--light-text-color);">The "Super" number on a wool suit fabric refers to the **fineness of the wool fiber**, measured in microns. Higher numbers mean finer, softer, and more luxurious wool, but often with reduced durability.</p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mt-4">
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Super 100s - 120s (Durable Workhorse)</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">**Microns:** ~18.5µm - 19.5µm. This is the **ideal balance** of durability and softness for everyday business wear.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Super 130s - 150s (Luxury Comfort)</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">**Microns:** ~16.5µm - 17.5µm. Noticeably softer and lighter. Best for professional settings and special occasions. Requires careful maintenance.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2" style="color: var(--text-color);">Super 180s+ (Ultra-Fine)</h4>
+                        <p class="text-sm" style="color: var(--light-text-color);">**Microns:** Below 15.5µm. Extremely fine and soft, reserved for very high-end garments worn infrequently (e.g., weddings, galas).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action / Consultation -->
+            <section class="text-center bg-white dark:bg-zinc-800 rounded-xl p-10 shadow-lg" style="border: 2px solid var(--primary-color);">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--primary-color);">Let's Find Your Signature Suit Fabric!</h2>
+                <p class="text-lg mb-6" style="color: var(--light-text-color);">We carry hundreds of wool and blend fabrics from the world's finest mills. Book a consultation to explore them all in person.</p>
+                <a href="book.html" class="inline-block py-3 px-8 rounded-full font-semibold uppercase transition-all duration-300 btn-consult">
+                    <i class="fas fa-calendar-alt mr-2"></i> BOOK A TAILORING APPOINTMENT
+                </a>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-12 border-t border-gray-200 dark:border-zinc-700 text-sm" style="color: var(--light-text-color); background: var(--card-bg);">
+        created by <span style="color: var(--primary-color); font-weight: 600;">TAILORED BY YOU</span> | all rights reserved 
+    </footer>
+
+    <!-- Embedded JavaScript for Theme Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+
+            // --- Theme Toggle Logic ---
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeBtn.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.classList.remove('dark');
+                themeBtn.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeBtn.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeBtn.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeBtn.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+        });
+
+        
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const themeBtn = document.getElementById('theme-btn');
+    const themeBtnMobile = document.getElementById('theme-btn-mobile');
+
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Load Theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+        themeBtn?.classList.replace('fa-sun', 'fa-moon');
+        themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    // Toggle theme
+    const toggleTheme = () => {
+        body.classList.toggle('dark');
+
+        if (body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            themeBtn?.classList.replace('fa-sun', 'fa-moon');
+            themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeBtn?.classList.replace('fa-moon', 'fa-sun');
+            themeBtnMobile?.classList.replace('fa-moon', 'fa-sun');
+        }
+    };
+
+    themeBtn?.addEventListener('click', toggleTheme);
+    themeBtnMobile?.addEventListener('click', toggleTheme);
+
+    // Mobile Menu Toggle
+    mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileBtn.innerHTML =
+            mobileMenu.classList.contains('hidden') 
+            ? '<i class="fas fa-bars"></i>' 
+            : '<i class="fas fa-times"></i>';
+    });
+});
+
+
+    </script>
+</body>
+</html>

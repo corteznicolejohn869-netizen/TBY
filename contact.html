@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAILORED BY YOU - Contact & Studio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom Fonts: Inter (Content) and Great Vibes (Cursive Logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Custom Styling for Variables and Theme -->
+    <style>
+        /* Base variables (Light Theme) */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --light-text-color: #666;
+            --background-color: #f7f7f7;
+            --card-bg: #ffffff;
+            --border-color: #ddd;
+        }
+
+        /* Dark Theme variables */
+        .dark {
+            --primary-color: #9333ea; /* Lighter Purple for contrast */
+            --secondary-color: #fcd34d; /* Lighter Gold */
+            --text-color: #f3f4f6; /* White/Off-White */
+            --light-text-color: #a1a1aa; /* Gray */
+            --background-color: #000000; /* Dark Gray Background */
+            --card-bg: #374151; /* Medium Dark Card */
+            --border-color: #4b5563;
+        }
+
+        /* Global styles using variables */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Logo text style */
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        /* Input and Textarea Focus Style */
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+        }
+
+        /* Custom Button Style */
+        .btn-primary {
+            background-color: var(--primary-color);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #5a0ca0; /* Darker purple on hover */
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header class="shadow-md sticky top-0 z-50" style="background-color: var(--card-bg);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <span class="text-3xl font-bold logo-text">Tailored by You</span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+                    <a href="index.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">
+                        <i class="fas fa-home mr-1"></i> HOME
+                    </a>
+                    <a href="login.html" class="text-sm font-medium hover:text-purple-600 transition-colors" style="color: var(--light-text-color);">ACCOUNT</a>
+                    <a href="contact.html" class="text-sm font-bold text-purple-600 border-b-2 pb-1" style="color: var(--primary-color); border-color: var(--primary-color);">CONTACT</a>
+                </div>
+
+                <!-- Right side icons (Theme Toggle, Mobile Menu) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" style="color: var(--text-color);">
+                        <i id="theme-icon" class="fas fa-moon text-xl"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button (Hidden on Desktop) -->
+                    <button type="button" id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" style="color: var(--text-color);">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4 px-2 space-y-2 border-t" style="border-color: var(--border-color); background-color: var(--card-bg);">
+            <a href="index.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);"><i class="fas fa-home mr-2"></i> Home</a>
+            <a href="login.html" class="block py-2 px-3 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700" style="color: var(--text-color);">Account</a>
+            <a href="contact.html" class="block py-2 px-3 rounded-md text-base font-bold bg-purple-100 dark:bg-purple-900" style="color: var(--primary-color);">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area: Contact Section -->
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-3" style="color: var(--primary-color);">
+                Get in Touch with Our Atelier
+            </h2>
+            <p class="text-lg sm:text-xl" style="color: var(--light-text-color);">
+                We are ready to discuss your custom designs or answer any queries you may have.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+            <!-- 1. Contact Form (2/3 width on desktop) -->
+            <div class="lg:col-span-2 p-8 rounded-xl shadow-xl" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                <h3 class="text-2xl font-bold mb-6" style="color: var(--text-color);">Send Us a Message</h3>
+                
+                <form id="contact-form" action="#" method="POST" class="space-y-6">
+                    <!-- Name and Email fields in a grid for responsiveness -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1" style="color: var(--light-text-color);">Full Name</label>
+                            <input type="text" id="name" name="name" required class="form-input w-full px-4 py-2 border rounded-lg transition duration-150 ease-in-out dark:bg-gray-700 dark:border-gray-600" style="border-color: var(--border-color); color: var(--text-color);">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1" style="color: var(--light-text-color);">Email Address</label>
+                            <input type="email" id="email" name="email" required class="form-input w-full px-4 py-2 border rounded-lg transition duration-150 ease-in-out dark:bg-gray-700 dark:border-gray-600" style="border-color: var(--border-color); color: var(--text-color);">
+                        </div>
+                    </div>
+
+                    <!-- Subject field -->
+                    <div>
+                        <label for="subject" class="block text-sm font-medium mb-1" style="color: var(--light-text-color);">Subject</label>
+                        <input type="text" id="subject" name="subject" required class="form-input w-full px-4 py-2 border rounded-lg transition duration-150 ease-in-out dark:bg-gray-700 dark:border-gray-600" style="border-color: var(--border-color); color: var(--text-color);">
+                    </div>
+
+                    <!-- Message field -->
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-1" style="color: var(--light-text-color);">Your Message or Inquiry</label>
+                        <textarea id="message" name="message" rows="5" required class="form-textarea w-full px-4 py-2 border rounded-lg transition duration-150 ease-in-out dark:bg-gray-700 dark:border-gray-600" style="border-color: var(--border-color); color: var(--text-color);"></textarea>
+                    </div>
+
+                    <!-- Submission Status Message Container (Hidden by default) -->
+                    <div id="form-status" class="hidden p-3 rounded-lg text-sm font-medium"></div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit" class="btn-primary w-full py-3 rounded-full font-semibold text-white text-lg shadow-md hover:shadow-lg">
+                            Send Inquiry <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 2. Contact Information and Studio Details (1/3 width on desktop) -->
+            <div class="lg:col-span-1 space-y-8 p-8 rounded-xl shadow-xl h-full" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                
+                <h3 class="text-2xl font-bold mb-4" style="color: var(--text-color);">Atelier Details</h3>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-xl mr-4 mt-1" style="color: var(--primary-color);"></i>
+                        <div>
+                            <p class="font-semibold" style="color: var(--text-color);">Visit Our Studio</p>
+                            <p class="text-sm" style="color: var(--light-text-color);">
+                                The Bespoke Hub, 14 Tailor's Row, <br>
+                                Fashion District, London, SW1A 0AA
+                            </p>
+                            <p class="text-xs mt-1 italic" style="color: var(--light-text-color);">(By Appointment Only)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <i class="fas fa-phone-alt text-xl mr-4" style="color: var(--primary-color);"></i>
+                        <div>
+                            <p class="font-semibold" style="color: var(--text-color);">Phone</p>
+                            <p class="text-sm" style="color: var(--light-text-color);">+44 20 7946 0999</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-xl mr-4" style="color: var(--primary-color);"></i>
+                        <div>
+                            <p class="font-semibold" style="color: var(--text-color);">Email Support</p>
+                            <p class="text-sm" style="color: var(--light-text-color);">support@tailoredbyyou.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Hours -->
+                <div class="border-t pt-4" style="border-color: var(--border-color);">
+                    <h4 class="text-lg font-semibold mb-2" style="color: var(--text-color);">Business Hours</h4>
+                    <ul class="space-y-1 text-sm" style="color: var(--light-text-color);">
+                        <li><span class="font-medium">Monday - Friday:</span> 9:00 AM – 5:00 PM</li>
+                        <li><span class="font-medium">Saturday:</span> 10:00 AM – 4:00 PM</li>
+                        <li><span class="font-medium">Sunday:</span> Closed</li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media Links -->
+                <div class="border-t pt-4" style="border-color: var(--border-color);">
+                    <h4 class="text-lg font-semibold mb-3" style="color: var(--text-color);">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:opacity-75 transition-opacity" style="color: var(--primary-color);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:opacity-75 transition-opacity" style="color: var(--primary-color);"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-2xl hover:opacity-75 transition-opacity" style="color: var(--primary-color);"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:opacity-75 transition-opacity" style="color: var(--primary-color);"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-8 border-t" style="border-color: var(--border-color); background-color: var(--card-bg);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-2xl font-bold logo-text mb-4">Tailored By You</p>
+            <p class="text-sm" style="color: var(--light-text-color);">&copy; 2025 Tailored By You. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Theme Toggle, Mobile Menu, and Form Submission -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+
+            // --- 1. Theme Toggle Logic ---
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                body.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+
+            // --- 2. Mobile Menu Logic ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- 3. Form Submission Handling ---
+            const showStatus = (message, type) => {
+                formStatus.textContent = message;
+                formStatus.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+                
+                if (type === 'success') {
+                    formStatus.classList.add('bg-green-100', 'text-green-800', 'dark:bg-green-800', 'dark:text-green-100');
+                } else if (type === 'error') {
+                    formStatus.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-800', 'dark:text-red-100');
+                }
+            };
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+                // Simulate an API call or sending process (2 seconds delay)
+                setTimeout(() => {
+                    // Success simulation
+                    showStatus('Thank you for your inquiry! We will respond within 48 hours.', 'success');
+                    contactForm.reset();
+                    submitButton.textContent = 'Send Inquiry';
+                    submitButton.disabled = false;
+                }, 2000);
+
+                // For a real application, you would add an actual fetch() call here
+                /*
+                fetch('/api/contact', {
+                    method: 'POST',
+                    body: new FormData(contactForm)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showStatus('Thank you for your inquiry! We will respond within 48 hours.', 'success');
+                        contactForm.reset();
+                    } else {
+                        showStatus('Oops! Something went wrong. Please try again or call us.', 'error');
+                    }
+                })
+                .catch(() => {
+                    showStatus('Network error. Please check your connection.', 'error');
+                })
+                .finally(() => {
+                    submitButton.textContent = 'Send Inquiry';
+                    submitButton.disabled = false;
+                });
+                */
+            });
+        });
+    </script>
+</body>
+</html>
