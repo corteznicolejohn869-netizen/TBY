@@ -333,7 +333,56 @@ document.addEventListener('DOMContentLoaded', () => {
             : '<i class="fas fa-times"></i>';
     });
 });
+
+     
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const themeBtn = document.getElementById('theme-btn');
+    const themeBtnMobile = document.getElementById('theme-btn-mobile');
+
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // — Load Theme from Local Storage —
+    const savedTheme = localStorage.getItem('theme') || 'light';
+
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+        themeBtn?.classList.replace('fa-sun', 'fa-moon');
+        themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    // — Toggle Theme —
+    const toggleTheme = () => {
+        body.classList.toggle('dark');
+
+        if (body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            themeBtn?.classList.replace('fa-sun', 'fa-moon');
+            themeBtnMobile?.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeBtn?.classList.replace('fa-moon', 'fa-sun');
+            themeBtnMobile?.classList.replace('fa-moon', 'fa-sun');
+        }
+    };
+
+    themeBtn?.addEventListener('click', toggleTheme);
+    themeBtnMobile?.addEventListener('click', toggleTheme);
+
+    // — Mobile Menu Toggle —
+    mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileBtn.innerHTML =
+            mobileMenu.classList.contains('hidden')
+            ? '<i class="fas fa-bars"></i>'
+            : '<i class="fas fa-times"></i>';
+    });
+});
+
+
 </script>
 
 </body>
+
 </html>
